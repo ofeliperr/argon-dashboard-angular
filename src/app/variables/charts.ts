@@ -271,9 +271,9 @@ export function chartOptions() {
 }
 
 export const parseOptions = (parent, options) => {
-		for (var item in options) {
-			if (typeof options[item] !== 'object') {
-				parent[item] = options[item];
+  for (const item in options) {
+    if (typeof options[item] !== 'object') {
+        parent[item] = options[item];
 			} else {
 				parseOptions(parent[item], options[item]);
 			}
@@ -287,22 +287,53 @@ export const chartExample1 = {
         gridLines: {
           color: colors.gray[900],
           zeroLineColor: colors.gray[900]
-        },
-        ticks: {
-          callback: function(value) {
-            if (!(value % 10)) {
-              return '$' + value + 'k';
-            }
-          }
         }
       }]
     }
   },
   data: {
-    labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    labels: ['14:01', '14:02',	'14:03',	'14:04',	'14:05',	'14:06',	'14:07',	'14:08',	'14:09',	'14:10',	'14:11',	'14:12',
+      '14:13',	'14:14',	'14:15',	'14:16',	'14:17',	'14:18',	'14:19',	'14:20',	'14:21',	'14:22',	'14:23',	'14:24',	'14:25',	'14:26',	'14:27',
+      '14:28',	'14:29',	'14:30',	'14:31'],
     datasets: [{
       label: 'Performance',
-      data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+      data: [10, 20,	60,	60,	0,	0,	40,	50,	50,	60,	50,	60,
+        40,	50,	50,	50,	50,	40,	40,	40,	0,	0,	60,	0,	60,	20,	20,
+        20,	20,	20,	10]
+    },
+    {
+      label: 'Performance2',
+      data: [0, 0,	20,	20,	40,	40,	50,	50,	50,	60,	50,	60,
+        40,	50,	20,	20,	20,	30,	30,	60,	10,	10,	40,	50,	60,	40,	40,
+        50,	50,	50,	50],
+        borderColor: ['#FF4136']
+    },
+    {
+      label: 'Performance3',
+      data: [40, 40,	10,	10,	30,	30,	40,	60,	10,	10,	10,	10,
+        10,	10,	10,	20,	20,	10,	10,	20,	10,	10,	30,	30,	30,	20,	20,
+        10,	10,	20,	20],
+        borderColor: ['#FF851B']
+    }]
+  }
+}
+
+export const chartExamplePie = {
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: {
+          color: 'rgba(0, 0, 0, 0)',
+        }
+      }]
+    }
+  },
+  data: {
+    labels: ['tes1', 'tes2', 'tes3', 'tes4'],
+    datasets: [{
+      label: 'Performance',
+      data: [200, 300, 200, 400],
+      backgroundColor: ['#0074D9', '#FF4136', '#2ECC40', '#FF851B']
     }]
   }
 }

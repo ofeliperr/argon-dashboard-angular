@@ -9,12 +9,17 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/icons', title: 'Icons',  icon: 'ni-planet text-blue', class: '' },
+    { path: '/maps', title: 'Maps',  icon: 'ni-pin-3 text-orange', class: '' },
+    { path: '/user-profile', title: 'User profile',  icon: 'ni-single-02 text-yellow', class: '' },
+    { path: '/tables', title: 'Tables',  icon: 'ni-bullet-list-67 text-red', class: '' },
+    { path: '/login', title: 'Login',  icon: 'ni-key-25 text-info', class: '' },
+    { path: '/register', title: 'Register',  icon: 'ni-circle-08 text-pink', class: '' },
+    { path: '/links-uteis', title: 'Links Úteis',  icon: 'ni-bulb-61 text-green', class: '' },
+    { path: '/marcas', title: 'Marcas',  icon: 'ni-collection text-red', class: '' },
+    { path: '/operadoras', title: 'Operadoras',  icon: 'ni-settings-gear-65 text-red', class: '' },
+    { path: '/unidades', title: 'Unidades',  icon: 'ni-building text-red', class: '' },
+    { path: '/usuarios', title: 'Usuários',  icon: 'ni-circle-08 text-green', class: '' }
 ];
 
 @Component({

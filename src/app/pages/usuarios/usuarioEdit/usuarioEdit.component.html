@@ -1,0 +1,103 @@
+<app-titulo [titulo]="titulo"></app-titulo>
+<form [formGroup]="registerForm">
+  <div class="row">
+    <div class="col-md-8">
+      <tabset>
+        <tab heading="Usuário">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>Nome:</label>
+              <input type="text" class="form-control" [(ngModel)]="usuario.nome"
+                [ngClass]="{'is-invalid': registerForm.get('nome').errors && registerForm.get('nome').touched}"
+                formControlName="nome" placeholder="Insira o Nome">
+              <div *ngIf="registerForm.get('nome').hasError('required')
+              && registerForm.get('nome').touched" class="invalid-feedback">
+                Nome é obrigatório.
+              </div>
+              <div *ngIf="registerForm.get('nome').hasError('minlength')
+            && registerForm.get('nome').touched" class="invalid-feedback">
+                Nome deve ter no mínimo 4 Caracters.
+              </div>
+              <div *ngIf="registerForm.get('nome').hasError('maxlength')
+          && registerForm.get('nome').touched" class="invalid-feedback">
+                Nome deve ter no máximo 150 Caracters.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>Login:</label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': registerForm.get('login').errors
+              && registerForm.get('login').touched}" formControlName="login" placeholder="Insira o E-mail">
+              <div *ngIf="registerForm.get('login').hasError('required')
+              && registerForm.get('login').touched" class="invalid-feedback">
+                Login é obrigatório.
+              </div>
+              <div *ngIf="registerForm.get('login').hasError('minlength')
+            && registerForm.get('login').touched" class="invalid-feedback">
+                Login deve ter no mínimo 4 Caracters.
+              </div>
+              <div *ngIf="registerForm.get('login').hasError('maxlength')
+          && registerForm.get('login').touched" class="invalid-feedback">
+                Login deve ter no máximo 150 Caracters.
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Email</label>
+              <input type="text" class="form-control" [(ngModel)]="usuario.email" [ngClass]="{'is-invalid': registerForm.get('email').errors
+            && registerForm.get('email').touched}" formControlName="email" placeholder="e-mail">
+              <div *ngIf="registerForm.get('email').hasError('required')
+            && registerForm.get('email').touched" class="invalid-feedback">
+                Email é obrigatório.
+              </div>
+              <div *ngIf="registerForm.get('email').hasError('email')
+          && registerForm.get('email').touched" class="invalid-feedback">
+                Deve ser um e-mail válido.
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Celular</label>
+              <input type="text" mask="(00) 00000-0000" class="form-control" [(ngModel)]="usuario.celular" [ngClass]="{'is-invalid': registerForm.get('telefone').errors
+            && registerForm.get('telefone').touched}" formControlName="telefone" placeholder="(00) 00000-0000">
+              <div *ngIf="registerForm.get('telefone').hasError('required')
+            && registerForm.get('telefone').touched" class="invalid-feedback">
+              Celular é obrigatório.
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content">
+          <button  [routerLink]="['/usuarios']" class="btn btn-warning my-2" >Voltar</button>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-end">
+          <button [disabled]="!registerForm.valid" class="btn btn-success my-2">Salvar
+            Alterações</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-row">
+      </div>
+      <div class="card profile-card-2">
+        <div class="card-body pt-3">
+          <h4>{{usuario.nome}}</h4>
+          <p class="card-text">
+            <b>Dados Usuário:</b> 
+          </p>
+          <hr>
+          <p class="card-text">
+            <b>Contatos</b><br>
+            <small class="text-muted">Celular: {{usuario.celular | mask: '(00) 00000-0000'}}</small>
+            <br>
+            <small class="text-muted">E-mail: {{usuario.email}}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

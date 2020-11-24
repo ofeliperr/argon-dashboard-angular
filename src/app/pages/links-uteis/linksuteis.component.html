@@ -1,0 +1,150 @@
+<div class="header bg-gradient-danger pb-6 pt-5 pt-md-6">
+
+</div>
+<app-titulo [titulo]="titulo"></app-titulo>
+<div class="d-flex">
+  <div class="form-inline mr-auto">
+    <div class="form-group mb-2">
+      <label class="mr-2">Filtro:</label><input type="text" 
+      class="form-control mr-2"
+      placeholder="buscar"
+      [(ngModel)]="filtroLista">
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-outline-primary" (click)="novoLink(template)">
+      <i class="fa fa-plus-circle"></i>&nbsp;
+      Novo
+    </button>
+  </div>
+</div>
+
+<!--<h3>Filtro: {{filtroLista}}</h3>-->
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th>#</th>
+      <th>Nome do Link</th>
+      <th>Usuário</th>
+      <th>Senha</th>
+      <th>Link</th>
+      <th colspan="2" class="text-center">Opções</th>
+    </tr>
+</thead>
+<tbody *ngIf="linksFiltrados && linksFiltrados.length">
+  <tr *ngFor="let link of linksFiltrados | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: linksFiltrados.length}">
+    <td>{{link.id}}</td>
+    <td>{{link.nome}}</td>
+    <td>{{link.usuario}}</td>
+    <td>{{link.senha}}</td>
+    <td>{{link.link}}</td>
+    <td>
+      <div class="btn-group">
+        <button class="btn btn-sm btn-danger" 
+        tooltip="Excluir">
+          <i class="fa fa-eraser"></i>
+        </button>
+      </div>
+    </td>
+    <td>
+      <a  (click)="editarLink(link, template)" tooltip="Editar Link" class="btn btn-sm btn-warning">
+        <i class="fa fa-edit"></i>
+      </a>
+    </td>
+</tr>
+</tbody>
+<tfoot *ngIf="!linksFiltrados"> 
+  <tr>
+    <td colspan="7" class="text-center">
+      <h4>
+        Nenhum link encontrado!
+      </h4>
+    </td>
+  </tr>
+</tfoot>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+  nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+</div>
+
+<div bsModal #template="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="dialog-sizes-name1" class="modal-title pull-left">Link Dados</h4>
+      <button type="button" class="close pull-right" (click)="template.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="registerForm">
+        <div class="form-row" [hidden]="modoSalvar == 'post'">
+          <div class="form-group col-md-12">
+            <label>Código:</label>
+            <input type="text" class="form-control"
+            formControlName="id" readonly="true">
+          </div>
+        </div> 
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Nome da Operadora:</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{'is-invalid': registerForm.get('nome').errors && registerForm.get('nome').touched}"
+            formControlName="nome" placeholder="Preencha o nome">
+            <div *ngIf="registerForm.get('nome').hasError('required') && registerForm.get('nome').touched" class="invalid-feedback">
+              Nome é obrigatório.
+            </div>
+            <div *ngIf="registerForm.get('nome').hasError('minlength') && registerForm.get('nome').touched" class="invalid-feedback">
+              Nome deve ter no mínimo 4 caracteres.
+            </div>
+            <div *ngIf="registerForm.get('nome').hasError('maxlength') && registerForm.get('nome').touched" class="invalid-feedback">
+              Nome deve ter no máximo 150 caracteres.
+            </div>
+          </div>
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Usuário:</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{'is-invalid': registerForm.get('usuario').errors && registerForm.get('usuario').touched}"
+            formControlName="usuario" placeholder="Preencha o usuário">
+            <div *ngIf="registerForm.get('usuario').hasError('required') && registerForm.get('usuario').touched" class="invalid-feedback">
+              Usuário é obrigatório.
+            </div>
+            <div *ngIf="registerForm.get('usuario').hasError('minlength') && registerForm.get('usuario').touched" class="invalid-feedback">
+              Usuário deve ter no mínimo 3 caracteres.
+            </div>
+            <div *ngIf="registerForm.get('usuario').hasError('maxlength') && registerForm.get('usuario').touched" class="invalid-feedback">
+              Usuário deve ter no máximo 50 caracteres.
+            </div>
+          </div>
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Senha:</label>
+            <input type="text" class="form-control" 
+            formControlName="senha" placeholder="Preencha a senha">
+          </div>
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Link:</label>
+            <input type="text" class="form-control" 
+            formControlName="link" placeholder="Preencha o link">
+          </div>
+        </div>  
+      </form>
+    </div>
+    <div class="modal-footer d-flex">
+      <button class="btn btn-secondary" (click)="template.hide()">
+        Fechar
+      </button>
+      <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="salvarAlteracao(template)">
+        Salvar Alterações
+      </button>
+    </div>
+  </div>
+</div>
+</div>
