@@ -1,10 +1,13 @@
+<div class="header bg-gradient-primary pb-3 pt-5 pt-md-6">
+
+</div>
 <app-titulo [titulo]="titulo"></app-titulo>
 <form [formGroup]="registerForm">
-  <div class="row">
+  <div class="row ml-3 mr-3">
     <div class="col-md-8">
       <tabset>
         <tab heading="Usuário">
-          <div class="form-row">
+          <div class="form-row mt-2">
             <div class="form-group col-md-12">
               <label>Nome:</label>
               <input type="text" class="form-control" [(ngModel)]="usuario.nome"

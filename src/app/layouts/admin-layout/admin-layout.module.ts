@@ -21,6 +21,7 @@ import { OperadorasComponent } from '../../pages/operadoras/operadoras.component
 import { UnidadesComponent } from '../../pages/unidades/unidades.component';
 import { UsuariosComponent } from '../../pages/usuarios/usuarios.component';
 import { UsuarioEditComponent } from '../../pages/usuarios/usuarioEdit/usuarioEdit.component';
+import { PesquisaCipComponent } from '../../pages/pesquisa-cip/pesquisa-cip.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { TituloComponent } from '../../pages/shared/titulo/titulo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -48,6 +49,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UnidadesComponent,
     UsuariosComponent,
     UsuarioEditComponent,
+    PesquisaCipComponent,
     TablesComponent,
     IconsComponent,
     MapsComponent,

@@ -10,6 +10,7 @@ import { OperadorasComponent } from '../../pages/operadoras/operadoras.component
 import { UnidadesComponent } from '../../pages/unidades/unidades.component';
 import { UsuariosComponent } from '../../pages/usuarios/usuarios.component';
 import { UsuarioEditComponent } from '../../pages/usuarios/usuarioEdit/usuarioEdit.component';
+import { PesquisaCipComponent } from '../../pages/pesquisa-cip/pesquisa-cip.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -21,6 +22,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'unidades',             component: UnidadesComponent },
     { path: 'usuarios',             component: UsuariosComponent },
     { path: 'usuario/:id/edit',     component: UsuarioEditComponent},
+    { path: 'pesquisacip',             component: PesquisaCipComponent },
     { path: 'tables',               component: TablesComponent },
     { path: 'icons',                component: IconsComponent },
     { path: 'maps',                 component: MapsComponent }

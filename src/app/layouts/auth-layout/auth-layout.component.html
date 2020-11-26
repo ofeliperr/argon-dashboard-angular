@@ -2,7 +2,7 @@
   <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
       <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
-        <img src="assets/img/brand/logo_cliente3.jpg" />
+        <img src="assets/img/brand/dasa_logo_roxo.png" />
       </a>
       <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
          aria-controls="sidenav-collapse-main">
@@ -27,7 +27,7 @@
         </div>
         <!-- Navbar items -->
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
               <i class="ni ni-planet"></i>
               <span class="nav-link-inner--text">Dashboard</span>
@@ -50,7 +50,7 @@
               <i class="ni ni-single-02"></i>
               <span class="nav-link-inner--text">Profile</span>
             </a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -62,11 +62,12 @@
     <div class="row align-items-center justify-content-xl-between">
       <div class="col-xl-6">
         <div class="copyright text-center text-xl-left text-muted">
-          &copy; {{ test | date: "yyyy" }} <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+          &copy; {{ test | date: "yyyy" }} <a href="https://dasa.com.br" class="font-weight-bold ml-1" target="_blank">Dasa</a>
         </div>
       </div>
       <div class="col-xl-6">
         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+          <!--
           <li class="nav-item">
             <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="nav-link" target="_blank">Creative Tim</a>
           </li>
@@ -78,7 +79,7 @@
           </li>
           <li class="nav-item">
             <a href="https://github.com/creativetimofficial/argon-dashboard-angular/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>

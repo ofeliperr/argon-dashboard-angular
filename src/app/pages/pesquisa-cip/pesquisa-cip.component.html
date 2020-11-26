@@ -1,0 +1,181 @@
+<div class="header bg-gradient-info pb-3 pt-5 pt-md-6">
+
+</div>
+<app-titulo [titulo]="titulo"></app-titulo>
+<div class="d-flex ml-3 mr-3">
+  <div class="form-inline mr-auto">
+    <div class="form-group mb-2">
+      <label class="mr-2">Número CIP-Visita:</label><input type="text" 
+      class="form-control mr-2"
+      placeholder=""
+      [(ngModel)]="filtroLista">
+    </div>
+    <div class="form-group mb-2">
+      <label class="mr-2">Código Procedimento:</label><input type="text" 
+      class="form-control mr-2"
+      placeholder="">
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-outline-primary">
+      <i class="fas fa-search"></i>&nbsp;
+      Pesquisar
+    </button>
+  </div>
+</div>
+
+<!--<h3>Filtro: {{filtroLista}}</h3>-->
+<table class="table table-striped ml-2 mr-2">
+  <thead class="thead-light">
+    <tr>
+      <th>ID Autorizador</th>
+      <th>Num. CIP Visita</th>
+      <th>Atendimento</th>
+      <th>Carteirinha</th>
+      <th>Opções</th>
+    </tr>
+</thead>
+<tbody *ngIf="pesquisaFiltrados && pesquisaFiltrados.length">
+  <tr *ngFor="let pesquisa of pesquisaFiltrados | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: pesquisaFiltrados.length}">
+    <td>{{pesquisa.id}}</td>
+    <td>{{pesquisa.num_cip}}</td>
+    <td>{{pesquisa.dt_atendimento}}</td>
+    <td>{{pesquisa.carteirinha}}</td>
+    <td>
+      <a  (click)="abrirPesquisa(pesquisa, template)" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+        <i class="fas fa-external-link-square-alt"></i>
+      </a>
+    </td>
+</tr>
+</tbody>
+<tfoot *ngIf="!pesquisaFiltrados"> 
+  <tr>
+    <td colspan="7" class="text-center">
+      <h4>
+        Nenhuma pesquisa encontrado!
+      </h4>
+    </td>
+  </tr>
+</tfoot>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+  nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+</div>
+
+<div bsModal #template="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="dialog-sizes-name1" class="modal-title pull-left">Detalhe da Guia TISS</h4>
+      <button type="button" class="close pull-right" (click)="template.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="registerForm">
+        <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-row">
+          </div>
+          <div class="card profile-card-2">
+            <div class="card-body pt-3">
+              <div class="form-row" [hidden]="modoSalvar == 'post'">
+                <div class="form-group col-md-12">
+                  <label>ID Gateway:</label>
+                  <input type="text" class="form-control"
+                  formControlName="id" readonly="true">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Autorizador:</label>
+                  <input type="text" class="form-control" formControlName="autorizador">
+                </div>
+              </div>  
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Marca:</label>
+                  <input type="text" class="form-control" formControlName="marca">
+                </div>
+              </div>  
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Unidade:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div>  
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>EMS/Paciente:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>FAP:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Operadora:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Região:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Nome do Atendente:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div> 
+            </div>  
+          </div>  
+        </div>
+        <div class="col-md-6">
+          <div class="form-row">
+          </div>
+          <div class="card profile-card-2">
+            <div class="card-body pt-3">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Glosa:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Desc Glosa:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div>  
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Glosa Original:</label>
+                  <input type="text" class="form-control" readonly="true">
+                </div>
+              </div>  
+            </div>  
+          </div>  
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer d-flex">
+      <button class="btn btn-secondary" (click)="template.hide()">
+        Fechar
+      </button>
+      <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="salvarAlteracao(template)">
+        Salvar Alterações
+      </button>
+    </div>
+  </div>
+</div>
+</div>
