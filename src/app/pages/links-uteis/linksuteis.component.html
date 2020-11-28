@@ -33,11 +33,11 @@
 </thead>
 <tbody *ngIf="linksFiltrados && linksFiltrados.length">
   <tr *ngFor="let link of linksFiltrados | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: linksFiltrados.length}">
-    <td>{{link.id}}</td>
-    <td>{{link.nome}}</td>
-    <td>{{link.usuario}}</td>
-    <td>{{link.senha}}</td>
-    <td>{{link.link}}</td>
+    <td>{{link.calI_SKU_LINK}}</td>
+    <td>{{link.calI_NOM_LINK}}</td>
+    <td>{{link.calI_TXT_USUARIO_LOGIN}}</td>
+    <td>{{link.calI_TXT_SENHA_LOGIN}}</td>
+    <td>{{link.calI_TXT_URL_LINK}}</td>
     <td>
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 

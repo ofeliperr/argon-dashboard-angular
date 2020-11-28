@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Marca } from '../../models/Marca';
+import { Marca } from '../../_models/Marca';
 
 @Component({
   selector: 'app-marcas',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Unidade } from '../../models/Unidade';
+import { Unidade } from '../../_models/Unidade';
 
 @Component({
   selector: 'app-unidades',

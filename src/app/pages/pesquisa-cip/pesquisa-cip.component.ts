@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { PesquisaCIP } from '../../models/PesquisaCIP';
+import { PesquisaCIP } from '../../_models/PesquisaCIP';
 
 
 @Component({

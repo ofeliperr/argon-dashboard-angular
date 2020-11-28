@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Link } from '../../models/Link';
+import { Link } from '../../_models/Link';
+import { LinkService } from '../../_services/link.service';
 
 @Component({
   selector: 'app-links-uteis',
@@ -20,7 +21,8 @@ export class LinksUteisComponent implements OnInit {
   contador = 5;
 
   constructor(
-    private fb: FormBuilder
+    private linkService: LinkService
+  , private fb: FormBuilder
   , private toastr: ToastrService
   ) {
   }
@@ -60,7 +62,7 @@ export class LinksUteisComponent implements OnInit {
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
-        this.link = Object.assign({id: 306}, this.registerForm.value);
+        this.link = Object.assign({calI_SKU_LINK: 306}, this.registerForm.value);
 
         console.log(this.link);
         this.links.push(this.link);
@@ -81,7 +83,7 @@ export class LinksUteisComponent implements OnInit {
 
       } else {
 
-        this.link = Object.assign({id: this.link.id}, this.registerForm.value);
+        this.link = Object.assign({id: this.link.calI_SKU_LINK}, this.registerForm.value);
 
         this.toastr.success('Alterado com Sucesso!', 'Link');
 
@@ -110,45 +112,45 @@ export class LinksUteisComponent implements OnInit {
   filtrarLinks(filtrarPor: string): Link[] {
     filtrarPor =  filtrarPor.toLocaleLowerCase();
     return this.links.filter(
-      pal => pal.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      pal => pal.calI_NOM_LINK.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
   getLinks() {
 
-    this.links = [
-      {
-        id: 1,
-        nome: 'Mediservice',
-        usuario: 'dasa9988',
-        senha: 'fatura08',
-        link: 'teste'
-      },
-      {
-        id: 2,
-        nome: 'Bradesco',
-        usuario: '',
-        senha: '',
-        link: 'http://www.bradescosaude.com.br/acessibilidade/home.do'
-      },
-      {
-        id: 3,
-        nome: 'Sul América Saude Lavoisier',
-        usuario: '123123',
-        senha: 'fatura08',
-        link: 'https://portal.sulamericaseguros'
-      }
-    ];
+    // this.links = [
+    //   {
+    //     id: 1,
+    //     nome: 'Mediservice',
+    //     usuario: 'dasa9988',
+    //     senha: 'fatura08',
+    //     link: 'teste'
+    //   },
+    //   {
+    //     id: 2,
+    //     nome: 'Bradesco',
+    //     usuario: '',
+    //     senha: '',
+    //     link: 'http://www.bradescosaude.com.br/acessibilidade/home.do'
+    //   },
+    //   {
+    //     id: 3,
+    //     nome: 'Sul América Saude Lavoisier',
+    //     usuario: '123123',
+    //     senha: 'fatura08',
+    //     link: 'https://portal.sulamericaseguros'
+    //   }
+    // ];
 
-    this.linksFiltrados = this.links;
+    // this.linksFiltrados = this.links;
 
-    // this.palestranteService.getAllPalestrante().subscribe(
-    //   (pax: Palestrante[]) => {
-    //   this.palestrantes = pax;
-    //   this.palestrantesFiltrados = this.palestrantes;
-    // }, error => {
-    //   this.toastr.error(`Erro ao tentar carregar palestrantes: ${error}!`);
-    // });
+    this.linkService.getAllLink().subscribe(
+      (pax: Link[]) => {
+      this.links = pax;
+      this.linksFiltrados = this.links;
+    }, error => {
+      this.toastr.error(`Erro ao tentar carregar palestrantes: ${error}!`);
+    });
   }
 
   pageChanged(event) {
