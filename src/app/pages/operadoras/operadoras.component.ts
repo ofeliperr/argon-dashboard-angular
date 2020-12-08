@@ -33,10 +33,11 @@ export class OperadorasComponent implements OnInit {
 
   validation() {
     this.registerForm = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
-      codigo_negativa: [''],
-      texto_requisicao: ['', Validators.required],
-      ativa: ['']
+      opeR_COD_OPERADORA: [''],
+      opeR_NOM_OPERADORA: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
+      opeR_COD_NEGA_OK: [''],
+      opeR_TXT_REQUISICAO: ['', Validators.required],
+      opeR_ATIVA: ['']
     });
   }
 
@@ -73,7 +74,7 @@ export class OperadorasComponent implements OnInit {
 
       } else {
 
-        this.operadora = Object.assign({id: this.operadora.id}, this.registerForm.value);
+        this.operadora = Object.assign({id: this.operadora.opeR_COD_OPERADORA}, this.registerForm.value);
 
         this.toastr.success('Alterado com Sucesso!', 'Operadora');
 
@@ -102,35 +103,35 @@ export class OperadorasComponent implements OnInit {
   filtrarOperadoras(filtrarPor: string): Operadora[] {
     filtrarPor =  filtrarPor.toLocaleLowerCase();
     return this.operadoras.filter(
-      pal => pal.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      pal => pal.opeR_NOM_OPERADORA.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
   getOperadoras() {
 
-    this.operadoras = [
-      {
-        id: 32323,
-        nome: 'EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS',
-        codigo_negativa: 101,
-        texto_requisicao: '',
-        ativa: true
-      },
-      {
-        id: 32354,
-        nome: 'ABET',
-        codigo_negativa: 102,
-        texto_requisicao: '',
-        ativa: true
-      },
-      {
-        id: 33424,
-        nome: 'AFRESP',
-        codigo_negativa: 103,
-        texto_requisicao: '',
-        ativa: true
-      }
-    ];
+    // this.operadoras = [
+    //   {
+    //     id: 32323,
+    //     nome: 'EMPRESA BRASILEIRA DE CORREIOS E TELEGRAFOS',
+    //     codigo_negativa: 101,
+    //     texto_requisicao: '',
+    //     ativa: true
+    //   },
+    //   {
+    //     id: 32354,
+    //     nome: 'ABET',
+    //     codigo_negativa: 102,
+    //     texto_requisicao: '',
+    //     ativa: true
+    //   },
+    //   {
+    //     id: 33424,
+    //     nome: 'AFRESP',
+    //     codigo_negativa: 103,
+    //     texto_requisicao: '',
+    //     ativa: true
+    //   }
+    // ];
 
     this.operadorasFiltrados = this.operadoras;
 

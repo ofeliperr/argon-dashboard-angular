@@ -28,16 +28,25 @@ export class LinkService {
   //   return this.http.post(`${this.baseURL}/upload`, formData);
   // }
 
-  // postEvento(evento: Evento) {
-  //   return this.http.post(this.baseURL, evento);
-  // }
+  postLink(link: Link) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
 
-  // putEvento(evento: Evento) {
-  //   return this.http.put(`${this.baseURL}/${evento.id}`, evento);
-  // }
+    // return this.http
+    //       .post(this.baseURL, link, httpOptions).subscribe(results => {
+    //       console.log(results);
+    // });
 
-  // deleteEvento(id: number) {
-  //   return this.http.delete(`${this.baseURL}/${id}`);
-  // }
+    return this.http.post(this.baseURL, link, httpOptions);
+  }
+
+  putLink(link: Link) {
+    return this.http.put(`${this.baseURL}/${link.calI_SKU_LINK}`, link);
+  }
+
+  deleteLink(id: number) {
+    return this.http.delete(`${this.baseURL}/${id}`);
+  }
 
 }

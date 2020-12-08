@@ -36,14 +36,14 @@
 </thead>
 <tbody *ngIf="unidadesFiltrados && unidadesFiltrados.length">
   <tr *ngFor="let unidade of unidadesFiltrados | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: unidadesFiltrados.length}">
-    <td>{{unidade.id}}</td>
-    <td>{{unidade.unidade}}</td>
-    <td>{{unidade.marca}}</td>
-    <td>{{unidade.regional}}</td>
-    <td>{{unidade.responsavel}}</td>
-    <td>{{unidade.telefone}}</td>
-    <td>{{unidade.endereco}}</td>
-    <td>{{unidade.tipo_unidade}}</td>
+    <td>{{unidade.uniD_COD_UNIDADE}}</td>
+    <td>{{unidade.uniD_NOM_UNIDADE}}</td>
+    <td>{{unidade.marC_NOM_MARCA}}</td>
+    <td>{{unidade.regI_NOM_REGIONAL}}</td>
+    <td>{{unidade.uniD_TXT_RESPONSAVEL}}</td>
+    <td>{{unidade.uniD_TXT_TELEFONE}}</td>
+    <td>{{unidade.uniD_TXT_ENDERECO}}</td>
+    <td>{{unidade.tipoUnidade}}</td>
     <td>
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
@@ -90,28 +90,35 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Código:</label>
             <input type="text" class="form-control"
-            formControlName="id" readonly="true">
+            formControlName="uniD_COD_UNIDADE" readonly="true">
           </div>
         </div> 
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Unidade:</label>
             <input type="text" class="form-control" 
-            [ngClass]="{'is-invalid': registerForm.get('unidade').errors && registerForm.get('unidade').touched}"
-            formControlName="unidade" placeholder="Preencha o nome">
-            <div *ngIf="registerForm.get('unidade').hasError('required') && registerForm.get('unidade').touched" class="invalid-feedback">
+            [ngClass]="{'is-invalid': registerForm.get('uniD_NOM_UNIDADE').errors && registerForm.get('uniD_NOM_UNIDADE').touched}"
+            formControlName="uniD_NOM_UNIDADE" placeholder="Preencha o nome">
+            <div *ngIf="registerForm.get('uniD_NOM_UNIDADE').hasError('required') && registerForm.get('uniD_NOM_UNIDADE').touched" class="invalid-feedback">
               Unidade é obrigatório.
             </div>
-            <div *ngIf="registerForm.get('unidade').hasError('minlength') && registerForm.get('unidade').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('uniD_NOM_UNIDADE').hasError('minlength') && registerForm.get('uniD_NOM_UNIDADE').touched" class="invalid-feedback">
               Unidade deve ter no mínimo 4 caracteres.
             </div>
-            <div *ngIf="registerForm.get('unidade').hasError('maxlength') && registerForm.get('unidade').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('uniD_NOM_UNIDADE').hasError('maxlength') && registerForm.get('uniD_NOM_UNIDADE').touched" class="invalid-feedback">
               Unidade deve ter no máximo 150 caracteres.
             </div>
           </div>
           <div class="form-group col-md-6">
             <label>Marca:</label>
-            <input type="text" class="form-control" 
+            <select  class="form-control"
+              formControlName="marC_NOM_MARCA">
+              <!-- <option disabled>Selecione marca</option>
+              <option>selecione uma opção</option> -->
+              <option value="">Selecione</option>
+              <option *ngFor="let marca of marcas">{{marca.marC_NOM_MARCA}}</option>
+            </select>
+            <!-- <input type="text" class="form-control" 
             [ngClass]="{'is-invalid': registerForm.get('marca').errors && registerForm.get('marca').touched}"
             formControlName="marca" placeholder="Preencha a marca">
             <div *ngIf="registerForm.get('marca').hasError('required') && registerForm.get('marca').touched" class="invalid-feedback">
@@ -122,33 +129,33 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
             </div>
             <div *ngIf="registerForm.get('marca').hasError('maxlength') && registerForm.get('marca').touched" class="invalid-feedback">
               Marca deve ter no máximo 50 caracteres.
-            </div>
+            </div> -->
           </div>
         </div>  
         <div class="form-row">
           <div class="form-group col-md-12">
             <label>Regional:</label>
             <input type="text" class="form-control" 
-            formControlName="regional" placeholder="Preencha a regional">
+            formControlName="regI_NOM_REGIONAL" placeholder="Preencha a regional">
           </div>
         </div>  
         <div class="form-row">
           <div class="form-group col-md-12">
             <label>Responsável:</label>
             <input type="text" class="form-control" 
-            formControlName="responsavel" placeholder="Preencha o responsável">
+            formControlName="uniD_TXT_RESPONSAVE" placeholder="Preencha o responsável">
           </div>
         </div>  
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Telefone:</label>
             <input type="text" class="form-control" 
-            formControlName="telefone" placeholder="Preencha o telefone">
+            formControlName="uniD_TXT_TELEFONE" placeholder="Preencha o telefone">
           </div>
           <div class="form-group col-md-6">
             <label>Endereço:</label>
             <input type="text" class="form-control" 
-            formControlName="endereco" placeholder="Preencha o endereço">
+            formControlName="uniD_TXT_ENDERECO" placeholder="Preencha o endereço">
           </div>
         </div>  
       </form>

@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
+  public mini = false;
 
   constructor(private router: Router) { }
 
@@ -35,5 +36,29 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+   this.toggleSidebar();
   }
+
+  testIn() {
+    console.log('hovering in sidebar');
+  }
+
+  testOut() {
+  console.log('hovering outside sidebar');
+  }
+
+  toggleSidebar() {
+    if (this.mini) {
+      // console.log('opening sidebar');
+      document.getElementById('sidenav-main').style.width = '200px';
+      document.getElementById('main-content').style.marginLeft = '200px';
+      this.mini = false;
+    } else {
+      // console.log('closing sidebar');
+      document.getElementById('sidenav-main').style.width = '50px';
+      document.getElementById('main-content').style.marginLeft = '50px';
+      this.mini = true;
+     }
+  }
+
 }

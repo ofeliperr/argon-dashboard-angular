@@ -34,17 +34,18 @@ export class LinksUteisComponent implements OnInit {
 
   validation() {
     this.registerForm = this.fb.group({
-      id: [''],
-      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
-      usuario: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      senha: [''],
-      link: ['']
+      calI_SKU_LINK: [''],
+      calI_NOM_LINK: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
+      calI_TXT_USUARIO_LOGIN: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      calI_TXT_SENHA_LOGIN: [''],
+      calI_TXT_URL_LINK: ['']
     });
   }
 
   novoLink(template: any) {
     this.modoSalvar = 'post';
     this.openModal(template);
+    this.registerForm.reset();
   }
 
   editarLink(link: Link, template: any) {
@@ -62,40 +63,41 @@ export class LinksUteisComponent implements OnInit {
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
+
+        // this.link = Object.assign({calI_SKU_LINK: 306}, this.registerForm.value);
+        // console.log(this.link);
+        // this.links.push(this.link);
+        // template.hide();
+        // this.getOperadoras();
+        // this.toastr.success('Inserido com Sucesso!', 'Link');
+
         this.link = Object.assign({calI_SKU_LINK: 306}, this.registerForm.value);
 
-        console.log(this.link);
-        this.links.push(this.link);
-        template.hide();
-        // this.getOperadoras();
-        this.toastr.success('Inserido com Sucesso!', 'Link');
-
-        // this.palestranteService.postPalestante(this.operadora).subscribe(
-        //   (novaOperadora: Operadora) => {
-        //     console.log(novaOperadora);
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Inserido com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao inserir!', 'Operadora');
-        //   }
-        // );
+        this.linkService.postLink(this.link).subscribe(
+          (novoLink: Link) => {
+            console.log(novoLink);
+            template.hide();
+            this.getLinks();
+            this.toastr.success('Inserido com Sucesso!', 'Link');
+          }, error => {
+            this.toastr.error('Erro ao inserir!', 'Link');
+          }
+        );
 
       } else {
 
         this.link = Object.assign({id: this.link.calI_SKU_LINK}, this.registerForm.value);
+        // this.toastr.success('Alterado com Sucesso!', 'Link');
 
-        this.toastr.success('Alterado com Sucesso!', 'Link');
-
-        // this.palestranteService.putPalestrante(this.operadora).subscribe(
-        //   () => {
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Alterado com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao alterar!', 'Operadora');
-        //   }
-        // );
+        this.linkService.putLink(this.link).subscribe(
+          () => {
+            template.hide();
+            this.getLinks();
+            this.toastr.success('Alterado com Sucesso!', 'Link');
+          }, error => {
+            this.toastr.error('Erro ao alterar!', 'Link');
+          }
+        );
       }
     }
   }
@@ -149,7 +151,7 @@ export class LinksUteisComponent implements OnInit {
       this.links = pax;
       this.linksFiltrados = this.links;
     }, error => {
-      this.toastr.error(`Erro ao tentar carregar palestrantes: ${error}!`);
+      this.toastr.error(`Erro ao tentar carregar links: ${error}!`);
     });
   }
 

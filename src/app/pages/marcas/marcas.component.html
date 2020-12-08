@@ -30,8 +30,8 @@
 </thead>
 <tbody *ngIf="marcasFiltrados && marcasFiltrados.length">
   <tr *ngFor="let marca of marcasFiltrados | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: marcasFiltrados.length}">
-    <td>{{marca.id}}</td>
-    <td>{{marca.nome}}</td>
+    <td>{{marca.marC_COD_MARCA}}</td>
+    <td>{{marca.marC_NOM_MARCA}}</td>
     <td>
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
@@ -79,22 +79,22 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Código:</label>
             <input type="text" class="form-control"
-            formControlName="id" readonly="true">
+            formControlName="marC_COD_MARCA" readonly="true">
           </div>
         </div> 
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label>Nome da Operadora:</label>
+            <label>Nome da Marca:</label>
             <input type="text" class="form-control" 
-            [ngClass]="{'is-invalid': registerForm.get('nome').errors && registerForm.get('nome').touched}"
-            formControlName="nome" placeholder="Preencha o nome">
-            <div *ngIf="registerForm.get('nome').hasError('required') && registerForm.get('nome').touched" class="invalid-feedback">
+            [ngClass]="{'is-invalid': registerForm.get('marC_NOM_MARCA').errors && registerForm.get('marC_NOM_MARCA').touched}"
+            formControlName="marC_NOM_MARCA" placeholder="Preencha o nome">
+            <div *ngIf="registerForm.get('marC_NOM_MARCA').hasError('required') && registerForm.get('marC_NOM_MARCA').touched" class="invalid-feedback">
               Nome é obrigatório.
             </div>
-            <div *ngIf="registerForm.get('nome').hasError('minlength') && registerForm.get('nome').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('marC_NOM_MARCA').hasError('minlength') && registerForm.get('marC_NOM_MARCA').touched" class="invalid-feedback">
               Nome deve ter no mínimo 4 caracteres.
             </div>
-            <div *ngIf="registerForm.get('nome').hasError('maxlength') && registerForm.get('nome').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('marC_NOM_MARCA').hasError('maxlength') && registerForm.get('marC_NOM_MARCA').touched" class="invalid-feedback">
               Nome deve ter no máximo 150 caracteres.
             </div>
           </div>

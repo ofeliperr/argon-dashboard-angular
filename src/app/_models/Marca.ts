@@ -3,6 +3,6 @@ export class Marca {
 
     constructor() { }
 
-    id: number;
-    nome: string;
+    marC_COD_MARCA: number;
+    marC_NOM_MARCA: string;
 }

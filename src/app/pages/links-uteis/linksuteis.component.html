@@ -37,7 +37,7 @@
     <td>{{link.calI_NOM_LINK}}</td>
     <td>{{link.calI_TXT_USUARIO_LOGIN}}</td>
     <td>{{link.calI_TXT_SENHA_LOGIN}}</td>
-    <td>{{link.calI_TXT_URL_LINK}}</td>
+    <td>{{link.calI_TXT_URL_LINK | slice:0:49}}</td>
     <td>
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
@@ -84,22 +84,22 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Código:</label>
             <input type="text" class="form-control"
-            formControlName="id" readonly="true">
+            formControlName="calI_SKU_LINK" readonly="true">
           </div>
         </div> 
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label>Nome da Operadora:</label>
+            <label>Nome do Link:</label>
             <input type="text" class="form-control" 
-            [ngClass]="{'is-invalid': registerForm.get('nome').errors && registerForm.get('nome').touched}"
-            formControlName="nome" placeholder="Preencha o nome">
-            <div *ngIf="registerForm.get('nome').hasError('required') && registerForm.get('nome').touched" class="invalid-feedback">
+            [ngClass]="{'is-invalid': registerForm.get('calI_NOM_LINK').errors && registerForm.get('calI_NOM_LINK').touched}"
+            formControlName="calI_NOM_LINK" placeholder="Preencha o nome">
+            <div *ngIf="registerForm.get('calI_NOM_LINK').hasError('required') && registerForm.get('calI_NOM_LINK').touched" class="invalid-feedback">
               Nome é obrigatório.
             </div>
-            <div *ngIf="registerForm.get('nome').hasError('minlength') && registerForm.get('nome').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('calI_NOM_LINK').hasError('minlength') && registerForm.get('calI_NOM_LINK').touched" class="invalid-feedback">
               Nome deve ter no mínimo 4 caracteres.
             </div>
-            <div *ngIf="registerForm.get('nome').hasError('maxlength') && registerForm.get('nome').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('calI_NOM_LINK').hasError('maxlength') && registerForm.get('calI_NOM_LINK').touched" class="invalid-feedback">
               Nome deve ter no máximo 150 caracteres.
             </div>
           </div>
@@ -108,15 +108,15 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Usuário:</label>
             <input type="text" class="form-control" 
-            [ngClass]="{'is-invalid': registerForm.get('usuario').errors && registerForm.get('usuario').touched}"
-            formControlName="usuario" placeholder="Preencha o usuário">
-            <div *ngIf="registerForm.get('usuario').hasError('required') && registerForm.get('usuario').touched" class="invalid-feedback">
+            [ngClass]="{'is-invalid': registerForm.get('calI_TXT_USUARIO_LOGIN').errors && registerForm.get('calI_TXT_USUARIO_LOGIN').touched}"
+            formControlName="calI_TXT_USUARIO_LOGIN" placeholder="Preencha o usuário">
+            <div *ngIf="registerForm.get('calI_TXT_USUARIO_LOGIN').hasError('required') && registerForm.get('calI_TXT_USUARIO_LOGIN').touched" class="invalid-feedback">
               Usuário é obrigatório.
             </div>
-            <div *ngIf="registerForm.get('usuario').hasError('minlength') && registerForm.get('usuario').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('calI_TXT_USUARIO_LOGIN').hasError('minlength') && registerForm.get('calI_TXT_USUARIO_LOGIN').touched" class="invalid-feedback">
               Usuário deve ter no mínimo 3 caracteres.
             </div>
-            <div *ngIf="registerForm.get('usuario').hasError('maxlength') && registerForm.get('usuario').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('calI_TXT_USUARIO_LOGIN').hasError('maxlength') && registerForm.get('calI_TXT_USUARIO_LOGIN').touched" class="invalid-feedback">
               Usuário deve ter no máximo 50 caracteres.
             </div>
           </div>
@@ -125,14 +125,14 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Senha:</label>
             <input type="text" class="form-control" 
-            formControlName="senha" placeholder="Preencha a senha">
+            formControlName="calI_TXT_SENHA_LOGIN" placeholder="Preencha a senha">
           </div>
         </div>  
         <div class="form-row">
           <div class="form-group col-md-12">
             <label>Link:</label>
             <input type="text" class="form-control" 
-            formControlName="link" placeholder="Preencha o link">
+            formControlName="calI_TXT_URL_LINK" placeholder="Preencha o link">
           </div>
         </div>  
       </form>

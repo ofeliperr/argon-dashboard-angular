@@ -1,5 +1,5 @@
-<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
-  <div class="container-fluid">
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main" (mouseover)="toggleSidebar()" (mouseout)="toggleSidebar()">
+  <div class="container-fluid" >
     <!-- Toggler -->
     <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
        aria-controls="sidenav-collapse-main">

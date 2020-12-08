@@ -3,9 +3,9 @@ export class Operadora {
 
     constructor() { }
 
-    id: number;
-    nome: string;
-    codigo_negativa: number;
-    texto_requisicao: string;
-    ativa: boolean;
+    opeR_COD_OPERADORA: number;
+    opeR_NOM_OPERADORA: string;
+    opeR_COD_NEGA_OK: number;
+    opeR_TXT_REQUISICAO: string;
+    opeR_ATIVA: boolean;
 }

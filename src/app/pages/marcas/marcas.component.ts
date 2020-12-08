@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Marca } from '../../_models/Marca';
+import { MarcaService } from '../../_services/marca.service';
 
 @Component({
   selector: 'app-marcas',
@@ -21,7 +22,8 @@ export class MarcasComponent implements OnInit {
   contador = 5;
 
   constructor(
-    private fb: FormBuilder
+    private marcaService: MarcaService
+  , private fb: FormBuilder
   , private toastr: ToastrService
   ) {
   }
@@ -33,14 +35,15 @@ export class MarcasComponent implements OnInit {
 
   validation() {
     this.registerForm = this.fb.group({
-      id: [''],
-      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]]
+      marC_COD_MARCA: [''],
+      marC_NOM_MARCA: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]]
     });
   }
 
   novaMarca(template: any) {
     this.modoSalvar = 'post';
     this.openModal(template);
+    this.registerForm.reset();
   }
 
   editarMarca(marca: Marca, template: any) {
@@ -58,40 +61,42 @@ export class MarcasComponent implements OnInit {
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
-        this.marca = Object.assign({id: 306}, this.registerForm.value);
 
-        console.log(this.marca);
-        this.marcas.push(this.marca);
-        template.hide();
-        // this.getOperadoras();
-        this.toastr.success('Inserido com Sucesso!', 'Marca');
+        this.marca = Object.assign({marC_COD_MARCA: 1}, this.registerForm.value);
+        this.marca.marC_COD_MARCA = 1;
 
-        // this.palestranteService.postPalestante(this.operadora).subscribe(
-        //   (novaOperadora: Operadora) => {
-        //     console.log(novaOperadora);
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Inserido com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao inserir!', 'Operadora');
-        //   }
-        // );
+        // console.log(this.marca);
+        // this.marcas.push(this.marca);
+        // template.hide();
+        // this.getMarcas();
+        // this.toastr.success('Inserido com Sucesso!', 'Marca');
+
+        this.marcaService.postMarca(this.marca).subscribe(
+          (novaMarca: Marca) => {
+            // console.log(novaMarca);
+            template.hide();
+            this.getMarcas();
+            this.toastr.success('Inserida com Sucesso!', 'Marca');
+          }, error => {
+            this.toastr.error('Erro ao inserir!', 'Marca');
+          }
+        );
 
       } else {
 
-        this.marca = Object.assign({id: this.marca.id}, this.registerForm.value);
+        this.marca = Object.assign({id: this.marca.marC_COD_MARCA}, this.registerForm.value);
+        // this.toastr.success('Alterado com Sucesso!', 'Marca');
 
-        this.toastr.success('Alterado com Sucesso!', 'Marca');
+        this.marcaService.putMarca(this.marca).subscribe(
+          () => {
+            template.hide();
+            this.getMarcas();
+            this.toastr.success('Alterada com Sucesso!', 'Marca');
+          }, error => {
+            this.toastr.error('Erro ao alterar!', 'Marca');
+          }
+        );
 
-        // this.palestranteService.putPalestrante(this.operadora).subscribe(
-        //   () => {
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Alterado com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao alterar!', 'Operadora');
-        //   }
-        // );
       }
     }
   }
@@ -108,29 +113,36 @@ export class MarcasComponent implements OnInit {
   filtrarMarcas(filtrarPor: string): Marca[] {
     filtrarPor =  filtrarPor.toLocaleLowerCase();
     return this.marcas.filter(
-      pal => pal.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      pal => pal.marC_NOM_MARCA.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
   getMarcas() {
 
-    this.marcas = [
-      {
-        id: 1,
-        nome: 'Delboni Auriemo'
-      },
-      {
-        id: 2,
-        nome: 'Lavoisier'
-      },
-      {
-        id: 3,
-        nome: 'Exame'
-      }
-    ];
+    // this.marcas = [
+    //   {
+    //     marC_COD_MARCA: 1,
+    //     marC_NOM_MARCA: 'Delboni Auriemo'
+    //   },
+    //   {
+    //     marC_COD_MARCA: 2,
+    //     marC_NOM_MARCA: 'Lavoisier'
+    //   },
+    //   {
+    //     marC_COD_MARCA: 3,
+    //     marC_NOM_MARCA: 'Exame'
+    //   }
+    // ];
 
-    this.marcasFiltrados = this.marcas;
+    // this.marcasFiltrados = this.marcas;
 
+    this.marcaService.getAllMarca().subscribe(
+      (pax: Marca[]) => {
+      this.marcas = pax;
+      this.marcasFiltrados = this.marcas;
+    }, error => {
+      this.toastr.error(`Erro ao tentar carregar marcas: ${error}!`);
+    });
   }
 
   pageChanged(event) {
