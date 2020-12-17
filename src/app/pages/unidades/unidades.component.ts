@@ -22,6 +22,7 @@ export class UnidadesComponent implements OnInit {
   pag  = 1;
   contador = 5;
   marcas: Marca[];
+  tiposUnidade: [{tipo: 'Pequena'}, {tipo: 'Média'}, {tipo: 'Grande'}, {tipo: 'Mega'}];
 
   constructor(
     private unidadeService: UnidadeService
@@ -42,7 +43,7 @@ export class UnidadesComponent implements OnInit {
       uniD_NOM_UNIDADE: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
       marC_NOM_MARCA: [''],
       regI_NOM_REGIONAL: [''],
-      uniD_TXT_RESPONSAVE: [''],
+      uniD_TXT_RESPONSAVEL: [''],
       uniD_TXT_TELEFONE: [''],
       uniD_TXT_ENDERECO: [''],
       tipoUnidade: [''],
@@ -76,39 +77,40 @@ export class UnidadesComponent implements OnInit {
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
-        this.unidade = Object.assign({uniD_COD_UNIDADE: 306}, this.registerForm.value);
 
-        this.unidades.push(this.unidade);
-        template.hide();
+        this.unidade = Object.assign({uniD_COD_UNIDADE: 1}, this.registerForm.value);
+        this.unidade.uniD_COD_UNIDADE = 1;
+
+        // this.unidades.push(this.unidade);
+        // template.hide();
         // this.getOperadoras();
-        this.toastr.success('Inserida com Sucesso!', 'Unidade');
+        // this.toastr.success('Inserida com Sucesso!', 'Unidade');
 
-        // this.palestranteService.postPalestante(this.operadora).subscribe(
-        //   (novaOperadora: Operadora) => {
-        //     console.log(novaOperadora);
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Inserido com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao inserir!', 'Operadora');
-        //   }
-        // );
+          this.unidadeService.postUnidade(this.unidade).subscribe(
+          (novaUnidade: Unidade) => {
+            // console.log(novaMarca);
+            template.hide();
+            this.getUnidades();
+            this.toastr.success('Inserida com Sucesso!', 'Unidade');
+          }, error => {
+            this.toastr.error('Erro ao inserir!', 'Unidade');
+          }
+        );
 
       } else {
 
         this.unidade = Object.assign({id: this.unidade.uniD_COD_UNIDADE}, this.registerForm.value);
+        // this.toastr.success('Alterado com Sucesso!', 'Marca');
 
-        this.toastr.success('Alterada com Sucesso!', 'Unidade');
-
-        // this.palestranteService.putPalestrante(this.operadora).subscribe(
-        //   () => {
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Alterado com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao alterar!', 'Operadora');
-        //   }
-        // );
+        this.unidadeService.putUnidade(this.unidade).subscribe(
+          () => {
+            template.hide();
+            this.getUnidades();
+            this.toastr.success('Alterada com Sucesso!', 'Unidade');
+          }, error => {
+            this.toastr.error('Erro ao alterar!', 'Unidade');
+          }
+        );
       }
     }
   }

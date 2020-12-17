@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Operadora } from '../../_models/Operadora';
+import { OperadoraService } from '../../_services/operadora.service';
 
 @Component({
   selector: 'app-operadoras',
@@ -21,7 +22,8 @@ export class OperadorasComponent implements OnInit {
   contador = 5;
 
   constructor(
-    private fb: FormBuilder
+    private operadoraService: OperadoraService
+  , private fb: FormBuilder
   , private toastr: ToastrService
   ) {
   }
@@ -53,40 +55,42 @@ export class OperadorasComponent implements OnInit {
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
-        this.operadora = Object.assign({id: 306}, this.registerForm.value);
 
-        console.log(this.operadora);
-        this.operadoras.push(this.operadora);
-        template.hide();
+        this.operadora = Object.assign({opeR_COD_OPERADORA: 1}, this.registerForm.value);
+        this.operadora.opeR_COD_OPERADORA = 1;
+
+        // console.log(this.operadora);
+        // this.operadoras.push(this.operadora);
+        // template.hide();
         // this.getOperadoras();
-        this.toastr.success('Inserido com Sucesso!', 'Operadora');
+        // this.toastr.success('Inserido com Sucesso!', 'Operadora');
 
-        // this.palestranteService.postPalestante(this.operadora).subscribe(
-        //   (novaOperadora: Operadora) => {
-        //     console.log(novaOperadora);
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Inserido com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao inserir!', 'Operadora');
-        //   }
-        // );
+        this.operadoraService.postOperadora(this.operadora).subscribe(
+          (novaOperadora: Operadora) => {
+            // console.log(novaMarca);
+            template.hide();
+            this.getOperadoras();
+            this.toastr.success('Inserida com Sucesso!', 'Operadora');
+          }, error => {
+            this.toastr.error('Erro ao inserir!', 'Operadora');
+          }
+        );
 
       } else {
 
         this.operadora = Object.assign({id: this.operadora.opeR_COD_OPERADORA}, this.registerForm.value);
+        // this.toastr.success('Alterado com Sucesso!', 'Marca');
 
-        this.toastr.success('Alterado com Sucesso!', 'Operadora');
+        this.operadoraService.putOperadora(this.operadora).subscribe(
+          () => {
+            template.hide();
+            this.getOperadoras();
+            this.toastr.success('Alterada com Sucesso!', 'Operadora');
+          }, error => {
+            this.toastr.error('Erro ao alterar!', 'Operadora');
+          }
+        );
 
-        // this.palestranteService.putPalestrante(this.operadora).subscribe(
-        //   () => {
-        //     template.hide();
-        //     this.getOperadoras();
-        //     this.toastr.success('Alterado com Sucesso!', 'Operadora');
-        //   }, error => {
-        //     this.toastr.error('Erro ao alterar!', 'Operadora');
-        //   }
-        // );
       }
     }
   }
@@ -133,8 +137,15 @@ export class OperadorasComponent implements OnInit {
     //   }
     // ];
 
-    this.operadorasFiltrados = this.operadoras;
+    // this.operadorasFiltrados = this.operadoras;
 
+    this.operadoraService.getAllOperadora().subscribe(
+      (pax: Operadora[]) => {
+      this.operadoras = pax;
+      this.operadorasFiltrados = this.operadoras;
+    }, error => {
+      this.toastr.error(`Erro ao tentar carregar operadoras: ${error}!`);
+    });
   }
 
   pageChanged(event) {

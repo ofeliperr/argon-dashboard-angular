@@ -28,11 +28,11 @@ export class OperadoraService {
     return this.http.post(this.baseURL, operadora, httpOptions);
   }
 
-  putMarca(operadora: Operadora) {
+  putOperadora(operadora: Operadora) {
     return this.http.put(`${this.baseURL}/${operadora.opeR_COD_OPERADORA}`, operadora);
   }
 
-  deleteMarca(id: number) {
+  deleteOperadora(id: number) {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 

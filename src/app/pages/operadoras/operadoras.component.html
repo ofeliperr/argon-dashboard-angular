@@ -30,8 +30,8 @@
 </thead>
 <tbody *ngIf="operadorasFiltrados && operadorasFiltrados.length">
   <tr *ngFor="let operadora of operadorasFiltrados | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: operadorasFiltrados.length}">
-    <td>{{operadora.id}}</td>
-    <td>{{operadora.nome}}</td>
+    <td>{{operadora.opeR_COD_OPERADORA}}</td>
+    <td>{{operadora.opeR_NOM_OPERADORA}}</td>
     <td>
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
@@ -78,15 +78,15 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Nome da Operadora:</label>
             <input type="text" class="form-control" 
-            [ngClass]="{'is-invalid': registerForm.get('nome').errors && registerForm.get('nome').touched}"
-            formControlName="nome" placeholder="Preencha o nome">
-            <div *ngIf="registerForm.get('nome').hasError('required') && registerForm.get('nome').touched" class="invalid-feedback">
+            [ngClass]="{'is-invalid': registerForm.get('opeR_NOM_OPERADORA').errors && registerForm.get('opeR_NOM_OPERADORA').touched}"
+            formControlName="opeR_NOM_OPERADORA" placeholder="Preencha o nome">
+            <div *ngIf="registerForm.get('opeR_NOM_OPERADORA').hasError('required') && registerForm.get('opeR_NOM_OPERADORA').touched" class="invalid-feedback">
               Nome é obrigatório.
             </div>
-            <div *ngIf="registerForm.get('nome').hasError('minlength') && registerForm.get('nome').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('opeR_NOM_OPERADORA').hasError('minlength') && registerForm.get('opeR_NOM_OPERADORA').touched" class="invalid-feedback">
               Nome deve ter no mínimo 4 caracteres.
             </div>
-            <div *ngIf="registerForm.get('nome').hasError('maxlength') && registerForm.get('nome').touched" class="invalid-feedback">
+            <div *ngIf="registerForm.get('opeR_NOM_OPERADORA').hasError('maxlength') && registerForm.get('opeR_NOM_OPERADORA').touched" class="invalid-feedback">
               Nome deve ter no máximo 150 caracteres.
             </div>
           </div>
@@ -96,21 +96,21 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Código da Negativa:</label>
             <input type="text" class="form-control"
-            formControlName="codigo_negativa" placeholder="Preencha o Código">
+            formControlName="opeR_COD_NEGA_OK" placeholder="Preencha o Código">
           </div>
         </div>   
         <div class="form-row">
           <div class="form-group col-md-12">
             <label>Texto da Requisição:</label>
             <textarea class="form-control"
-            formControlName="texto_requisicao"></textarea>
+            formControlName="opeR_TXT_REQUISICAO"></textarea>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-1">
             <label>Ativa:</label>
             <input type="checkbox" class="form-control"
-            formControlName="ativa">
+            formControlName="opeR_ATIVA">
           </div>
         </div>
       </form>

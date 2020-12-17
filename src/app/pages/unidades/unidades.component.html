@@ -112,7 +112,9 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-6">
             <label>Marca:</label>
             <select  class="form-control"
-              formControlName="marC_NOM_MARCA">
+              formControlName="marC_NOM_MARCA" 
+              required 
+              ngModel>
               <!-- <option disabled>Selecione marca</option>
               <option>selecione uma opção</option> -->
               <option value="">Selecione</option>
@@ -143,7 +145,7 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="form-group col-md-12">
             <label>Responsável:</label>
             <input type="text" class="form-control" 
-            formControlName="uniD_TXT_RESPONSAVE" placeholder="Preencha o responsável">
+            formControlName="uniD_TXT_RESPONSAVEL" placeholder="Preencha o responsável">
           </div>
         </div>  
         <div class="form-row">
@@ -158,6 +160,16 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
             formControlName="uniD_TXT_ENDERECO" placeholder="Preencha o endereço">
           </div>
         </div>  
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Tipo da Unidade:</label>
+            <select  class="form-control"
+            formControlName="tipoUnidade">
+            <option value="">Selecione</option>
+            <option *ngFor="let tipo of tiposUnidade">{{tipo.tipo}}</option>
+          </select>
+          </div>
+        </div>
       </form>
     </div>
     <div class="modal-footer d-flex">
