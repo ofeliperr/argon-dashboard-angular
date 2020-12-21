@@ -8,8 +8,7 @@ import { Operadora } from '../_models/Operadora';
 })
 export class OperadoraService {
 
-
-  baseURL = 'https://localhost:44385/api/Operadora';
+  baseURL = 'http://10.1.255.23:83/api/Operadora'; // 'https://localhost:44385/api/Operadora';
 
   constructor(private http: HttpClient) { }
 

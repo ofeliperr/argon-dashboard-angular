@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Usuario } from '../../_models/Usuario';
 
 @Component({
@@ -13,14 +15,30 @@ export class UsuariosComponent implements OnInit {
   usuarios: Usuario[];
   usuario: Usuario;
   filtroListaX: string;
+  registerForm: FormGroup;
   modoSalvar = 'post';
   pag  = 1;
   contador = 5;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder
+  , private toastr: ToastrService
+  ) {
+  }
 
   ngOnInit() {
+    this.validation();
     this.getUsuarios();
+  }
+
+  validation() {
+    this.registerForm = this.fb.group({
+      id: [''],
+      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
+      login: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
+      email: ['', [Validators.required, Validators.email]],
+      celular: ['', Validators.required],
+    });
   }
 
   get filtroLista(): string {
@@ -37,6 +55,27 @@ export class UsuariosComponent implements OnInit {
     return this.usuarios.filter(
       pal => pal.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
+  }
+
+  novoUsuario(template: any) {
+    this.modoSalvar = 'post';
+    this.openModal(template);
+  }
+
+  editarUsuario(usuario: Usuario, template: any) {
+    this.modoSalvar = 'put';
+    this.openModal(template);
+    this.usuario = Object.assign({}, usuario);
+    this.registerForm.patchValue(this.usuario);
+  }
+
+  openModal(template: any) {
+    this.registerForm.reset();
+    template.show();
+  }
+
+  salvarAlteracao(template: any) {
+    template.hide();
   }
 
   getUsuarios() {
@@ -67,6 +106,10 @@ export class UsuariosComponent implements OnInit {
 
     this.usuariosFiltrados = this.usuarios;
 
+  }
+
+  pageChanged(event) {
+    this.pag = event;
   }
 
 }

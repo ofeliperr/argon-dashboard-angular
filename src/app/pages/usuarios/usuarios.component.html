@@ -1,4 +1,4 @@
-<div class="header bg-gradient-primary pb-3 pt-5 pt-md-6">
+<div class="header bg-gradient-info pb-3 pt-5 pt-md-6">
 
 </div>
 <app-titulo [titulo]="titulo"></app-titulo>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div>
-    <button class="btn btn-outline-primary">
+    <button class="btn btn-outline-primary" (click)="novoUsuario(template)">
       <i class="fa fa-plus-circle"></i>&nbsp;
       Novo
     </button>
@@ -20,7 +20,7 @@
 </div>
 
 <!--<h3>Filtro: {{filtroLista}}</h3>-->
-<table class="table table-striped">
+<table class="table table-striped ml-2 mr-2">
   <thead class="thead-light">
     <tr>
       <th>Código</th>
@@ -47,7 +47,7 @@
       </div>
     </td>
     <td>
-      <a [routerLink]="['/usuario', usuario.id, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+      <a (click)="editarUsuario(usuario, template)"  tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
         <i class="fa fa-edit"></i>
       </a>
     </td>
@@ -63,3 +63,91 @@
   </tr>
 </tfoot>
 </table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+  nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+</div>
+
+<div bsModal #template="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="dialog-sizes-name1" class="modal-title pull-left">Usuário Dados</h4>
+      <button type="button" class="close pull-right" (click)="template.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="registerForm">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nome:</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{'is-invalid': registerForm.get('nome').errors && registerForm.get('nome').touched}"
+            formControlName="nome" placeholder="Preencha o nome">
+            <div *ngIf="registerForm.get('nome').hasError('required') && registerForm.get('nome').touched" class="invalid-feedback">
+              Nome é obrigatório.
+            </div>
+            <div *ngIf="registerForm.get('nome').hasError('minlength') && registerForm.get('nome').touched" class="invalid-feedback">
+              Nome deve ter no mínimo 4 caracteres.
+            </div>
+            <div *ngIf="registerForm.get('nome').hasError('maxlength') && registerForm.get('nome').touched" class="invalid-feedback">
+              Nome deve ter no máximo 150 caracteres.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Login:</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{'is-invalid': registerForm.get('login').errors && registerForm.get('login').touched}"
+            formControlName="login" placeholder="Preencha o login">
+            <div *ngIf="registerForm.get('login').hasError('required') && registerForm.get('login').touched" class="invalid-feedback">
+              Login é obrigatório.
+            </div>
+            <div *ngIf="registerForm.get('login').hasError('minlength') && registerForm.get('login').touched" class="invalid-feedback">
+              Login deve ter no mínimo 4 caracteres.
+            </div>
+            <div *ngIf="registerForm.get('login').hasError('maxlength') && registerForm.get('login').touched" class="invalid-feedback">
+              Login deve ter no máximo 150 caracteres.
+            </div>
+          </div>
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>E-mail:</label>
+            <input type="text" class="form-control" 
+            [ngClass]="{'is-invalid': registerForm.get('email').errors && registerForm.get('email').touched}"
+            formControlName="email" placeholder="Preencha o e-mail">
+            <div *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched" class="invalid-feedback">
+              E-mail é obrigatório.
+            </div>
+            <div *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched" class="invalid-feedback">
+              E-mail inválido.
+            </div>
+          </div>
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Celular:</label>
+            <input type="text" mask="(00) 00000-0000"
+            class="form-control" 
+            [ngClass]="{'is-invalid': registerForm.get('celular').errors && registerForm.get('celular').touched}"
+            formControlName="celular" placeholder="(00) 00000-0000">
+            <div *ngIf="registerForm.get('celular').hasError('required') && registerForm.get('celular').touched" class="invalid-feedback">
+              Celular é obrigatório.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer d-flex">
+      <button class="btn btn-secondary" (click)="template.hide()">
+        Fechar
+      </button>
+      <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="salvarAlteracao(template)">
+        Salvar Alterações
+      </button>
+    </div>
+  </div>
+</div>
+</div>

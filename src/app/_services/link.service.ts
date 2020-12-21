@@ -8,7 +8,7 @@ import { Link } from '../_models/Link';
 })
 export class LinkService {
 
-  baseURL = 'https://localhost:44385/api/Link';
+  baseURL = 'http://10.1.255.23:83/api/Link'; // 'https://localhost:44385/api/Link';
 
   constructor(private http: HttpClient) { }
 

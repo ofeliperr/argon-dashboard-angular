@@ -9,8 +9,8 @@ import { Marca } from '../_models/Marca';
 })
 export class UnidadeService {
 
-  baseURL = 'https://localhost:44385/api/Unidade';
-  baseURLMarca = 'https://localhost:44385/api/Marca';
+  baseURL = 'http://10.1.255.23:83/api/Unidade'; // 'https://localhost:44385/api/Unidade';
+  baseURLMarca = 'http://10.1.255.23:83/api/Marca'; // 'https://localhost:44385/api/Marca';
 
   constructor(private http: HttpClient) { }
 
