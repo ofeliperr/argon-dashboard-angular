@@ -29,7 +29,7 @@ import { LinkService } from './_services/link.service';
       timeOut: 3000,
       preventDuplicates: true,
       progressBar: true
-   }),
+   })
   ],
   declarations: [
     AppComponent,

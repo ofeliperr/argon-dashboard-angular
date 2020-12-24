@@ -346,7 +346,7 @@ export const chartExample2 = {
           ticks: {
             callback: function(value) {
               if (!(value % 10)) {
-                //return '$' + value + 'k'
+                // return '$' + value + 'k'
                 return value;
               }
             }
@@ -357,7 +357,7 @@ export const chartExample2 = {
     tooltips: {
       callbacks: {
         label: function(item, data) {
-          var label = data.datasets[item.datasetIndex].label || "";
+          var label = data.datasets[item.datasetIndex].label || '';
           var yLabel = item.yLabel;
           var content = "";
           if (data.datasets.length > 1) {

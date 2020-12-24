@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
     //   data: chartExample2.data
     // });
 
-    const chartSales = document.getElementById('chart-sales');
+    const chartSales = document.getElementById('chart-sales') as HTMLCanvasElement;
 
     this.salesChart = new Chart(chartSales, {
       type: 'line',
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
       data: chartExample1.data
     });
 
-    const chartAprovadas = document.getElementById('chart-aprovadas');
+    const chartAprovadas = document.getElementById('chart-aprovadas') as HTMLCanvasElement;
 
     this.salesChart = new Chart(chartAprovadas, {
       type: 'line',
@@ -57,20 +57,21 @@ export class DashboardComponent implements OnInit {
       data: chartExample1.data
     });
 
-    const chartNegativas = document.getElementById('chart-negativas');
+    const chartNegativas = document.getElementById('chart-negativas') as HTMLCanvasElement;
 
     this.salesChart = new Chart(chartNegativas, {
       type: 'pie',
       options: chartExamplePie.options,
-      data: chartExamplePie.data,
-      colors:  {
-        backgroundColor: [
-          'red',
-          'green',
-          'blue',
-          'yellow',
-        ]
-      }
+      data: chartExamplePie.data
+      // ,
+      // colors:  {
+      //   backgroundColor: [
+      //     'red',
+      //     'green',
+      //     'blue',
+      //     'yellow',
+      //   ]
+      // }
     });
   }
 
