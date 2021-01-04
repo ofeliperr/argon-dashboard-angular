@@ -1,0 +1,76 @@
+<div class="header bg-gradient-info pb-3 pt-5 pt-md-6">
+
+</div>
+<div class="card text-white mydiv mb-3 mt-2" style="width: 100%;">
+  <div class="card-header" style="height: 50px;">
+    <div class="row">
+      <a mdbWavesEffect [routerLink]="['/links-uteis']"><i class="fas fa-long-arrow-alt-left fa-2x" ></i></a>
+      <h3>{{titulo}}</h3>
+  </div>
+  </div>
+</div>
+<form [formGroup]="registerForm">
+  <div class="form-row mt-2">
+    <div class="form-group col-md-6">
+      <label>Código:</label>
+      <input type="text" class="form-control"
+      formControlName="calI_SKU_LINK"  style="background-color: #fff;" readonly>
+    </div>
+  </div> 
+  <div class="form-row mt-2">
+    <div class="form-group col-md-12">
+      <label>Nome do Link:</label>
+      <input type="text" class="form-control"
+      [ngClass]="{'is-invalid': registerForm.get('calI_NOM_LINK').errors && registerForm.get('calI_NOM_LINK').touched}"
+      formControlName="calI_NOM_LINK" placeholder="Preencha o nome">
+      <div *ngIf="registerForm.get('calI_NOM_LINK').hasError('required') && registerForm.get('calI_NOM_LINK').touched" class="invalid-feedback">
+        Nome é obrigatório.
+      </div>
+      <div *ngIf="registerForm.get('calI_NOM_LINK').hasError('minlength') && registerForm.get('calI_NOM_LINK').touched" class="invalid-feedback">
+        Nome deve ter no mínimo 4 caracteres.
+      </div>
+      <div *ngIf="registerForm.get('calI_NOM_LINK').hasError('maxlength') && registerForm.get('calI_NOM_LINK').touched" class="invalid-feedback">
+        Nome deve ter no máximo 150 caracteres.
+      </div>
+    </div>
+  </div>
+  <div class="form-row mt-2">
+    <div class="form-group col-md-6">
+      <label>Usuário:</label>
+      <input type="text" class="form-control" 
+      [ngClass]="{'is-invalid': registerForm.get('calI_TXT_USUARIO_LOGIN').errors && registerForm.get('calI_TXT_USUARIO_LOGIN').touched}"
+      formControlName="calI_TXT_USUARIO_LOGIN" placeholder="Preencha o usuário">
+      <div *ngIf="registerForm.get('calI_TXT_USUARIO_LOGIN').hasError('required') && registerForm.get('calI_TXT_USUARIO_LOGIN').touched" class="invalid-feedback">
+        Usuário é obrigatório.
+      </div>
+      <div *ngIf="registerForm.get('calI_TXT_USUARIO_LOGIN').hasError('minlength') && registerForm.get('calI_TXT_USUARIO_LOGIN').touched" class="invalid-feedback">
+        Usuário deve ter no mínimo 3 caracteres.
+      </div>
+      <div *ngIf="registerForm.get('calI_TXT_USUARIO_LOGIN').hasError('maxlength') && registerForm.get('calI_TXT_USUARIO_LOGIN').touched" class="invalid-feedback">
+        Usuário deve ter no máximo 50 caracteres.
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Senha:</label>
+      <input type="text" class="form-control" 
+      formControlName="calI_TXT_SENHA_LOGIN" placeholder="Preencha a senha">
+    </div>
+  </div>
+  <div class="form-row mt-2">
+    <div class="form-group col-md-6">
+      <label>Link:</label>
+      <input type="text" class="form-control" 
+      formControlName="calI_TXT_URL_LINK" placeholder="Preencha o link">
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col-md-10 d-flex justify-content-end">
+    <button  [routerLink]="['/links-uteis']" type="button" class="btn btn-primary btn-sm" >Voltar</button>
+  </div>
+  <div class="col-md-2 d-flex justify-content-end">
+    <button [disabled]="!registerForm.valid" type="button" class="btn btn-success btn-sm">Salvar
+      Alterações</button>
+  </div>
+</div>

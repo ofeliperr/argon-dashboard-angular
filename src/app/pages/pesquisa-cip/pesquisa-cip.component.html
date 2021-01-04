@@ -1,7 +1,11 @@
 <div class="header bg-gradient-info pb-3 pt-5 pt-md-6">
 
 </div>
-<app-titulo [titulo]="titulo"></app-titulo>
+<div class="card text-white mydiv mb-3 mt-2" style="width: 100%;">
+  <div class="card-header" style="height: 50px;">
+    <h3>{{titulo}}</h3>
+  </div>
+</div>
 <div class="d-flex ml-3 mr-3">
   <div class="form-inline mr-auto">
     <div class="form-group mb-2">
@@ -42,7 +46,7 @@
     <td>{{pesquisa.dt_atendimento}}</td>
     <td>{{pesquisa.carteirinha}}</td>
     <td>
-      <a  (click)="abrirPesquisa(pesquisa, template)" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+      <a  [routerLink]="['/pesquisacip', pesquisa.id, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
         <i class="fas fa-external-link-square-alt"></i>
       </a>
     </td>

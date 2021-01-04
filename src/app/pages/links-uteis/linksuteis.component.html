@@ -1,3 +1,4 @@
+<div class="container mt-5">
 <app-titulo [titulo]="titulo"></app-titulo>
 <div class="d-flex ml-3 mr-3">
   <div class="form-inline mr-auto">
@@ -44,7 +45,7 @@
       </div>
     </td>
     <td>
-      <a  (click)="editarLink(link, template)" tooltip="Editar Link" class="btn btn-sm btn-warning">
+      <a  [routerLink]="['/links-uteis', link.calI_SKU_LINK, 'edit']" tooltip="Editar Link" class="btn btn-sm btn-warning">
         <i class="fa fa-edit"></i>
       </a>
     </td>
@@ -143,5 +144,6 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
       </button>
     </div>
   </div>
+</div>
 </div>
 </div>

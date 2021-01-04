@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import * as Chart from 'chart.js';
+defineLocale('pt-br', ptBrLocale);
 
 // core components
 import {
@@ -16,12 +22,21 @@ import {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  titulo = 'Dashboard';
   public datasets: any;
   public data: any;
   public salesChart;
   public clicked = true;
   public clicked1 = false;
+  registerForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder
+  , private toastr: ToastrService
+  , private localeService: BsLocaleService
+  ) {
+    localeService.use('pt-br');
+  }
 
   ngOnInit() {
 
@@ -73,6 +88,28 @@ export class DashboardComponent implements OnInit {
       //   ]
       // }
     });
+    this.validation();
+  }
+
+  validation() {
+    this.registerForm = this.fb.group({
+      data: [''],
+      exibicao: [''],
+      regional: [''],
+      marca: [''],
+      unidade: [''],
+      operadora: ['']
+    });
+  }
+
+  novoFiltro(template: any) {
+    this.openModal(template);
+    this.registerForm.reset();
+  }
+
+  openModal(template: any) {
+    this.registerForm.reset();
+    template.show();
   }
 
   public updateOptions() {

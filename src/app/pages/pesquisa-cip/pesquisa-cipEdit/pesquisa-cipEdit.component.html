@@ -1,0 +1,424 @@
+<div class="header bg-gradient-info pb-3 pt-5 pt-md-6">
+
+</div>
+<div class="card text-white mydiv mb-3 mt-2" style="width: 100%;">
+  <div class="card-header" style="height: 50px;">
+    <h3>{{titulo}}</h3>
+  </div>
+</div>
+<form [formGroup]="registerForm">
+  <div class="container">
+    <div class="form-row">
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>ID Gateway:</label>
+            <input type="text" class="form-control"
+            formControlName="id" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Autorizador:</label>
+            <input type="text" class="form-control" formControlName="autorizador">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Marca:</label>
+            <input type="text" class="form-control" formControlName="marca">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Unidade:</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>EMS/Paciente:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>FAP:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Operadora:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Região:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nome do Atendente:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div> 
+      </div>
+      <div class="col-md-12">
+          <hr class="style1 mt-0">
+      </div>
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>Glosa:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Desc Glosa:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Glosa Original:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr class="style1 mt-0">
+      </div>
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>Tipo de Solicitação:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Data da Solicitação do Atendimento:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Data do Inicio da Solicitação:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Data do Fim da Solicitação:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr class="style1 mt-0">
+      </div>
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>Status Guia:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Autorizado Negócio:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Tipo Aprovação Medlink:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr class="style1 mt-0">
+      </div>
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>Número da Guia da Operadora:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Número da Guia da Operadora Retorno:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Senha/Pré-Senha:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Data da Autorização:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr class="style1 mt-0">
+      </div>
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nome do Beneficiário:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Número Carteirinha:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Validade da Carteirinha:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr class="style1 mt-0">
+      </div>
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>Monitor Operacional:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Monitor Executivo:</label>
+            <input type="text" class="form-control" readonly="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr class="style1 mt-0">
+      </div>
+    </div>
+
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <h3 class="ml-2 myh3 mt-2">Log Gateway</h3>
+      </div>
+      <table class="table mytable ml-2 mr-2">
+        <thead class="mythead">
+          <tr>
+            <th>SKU Trace</th>
+            <th>Guia</th>
+            <th>Data do Trace</th>
+            <th>Nível Trace</th>
+            <th>Tipo Trace</th>
+            <th>Txt Trace</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>435234</td>
+            <td>234324</td>
+            <td>22/10/2020 08:30</td>
+            <td>2000</td>
+            <td>4006</td>
+            <td>4006;Gateway[Autorizador]</td>
+          </tr>
+          <tr>
+            <td>435225</td>
+            <td>234325</td>
+            <td>22/10/2020 08:38</td>
+            <td>3000</td>
+            <td>4007</td>
+            <td>4007;Gateway[Autorizador]</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-12">
+      <hr class="style1 mt-0">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <h3 class="ml-2 myh3 mt-2">Log Guia OPM</h3>
+      </div>
+      <table class="table mytable ml-2 mr-2">
+        <thead class="mythead">
+          <tr>
+            <th>SKU OPM</th>
+            <th>Guia</th>
+            <th>Cód Tabela</th>
+            <th>Qtde</th>
+            <th>Cód OPM</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-12">
+      <hr class="style1 mt-0">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-xs-8">
+      <div class=table-wrapper>
+        <div class="col-md-12">
+          <div class="form-row">
+            <h3 class="ml-2 myh3 mt-2">Log Guia Procedimento</h3>
+          </div>
+          <table class="table mytable ml-2 mr-2">
+            <thead class="mythead">
+              <tr>
+                <th style="width:10%">SKU LOG</th>
+                <th style="width:10%">Guia</th>
+                <th style="width:10%">Tabela</th>
+                <th style="width:15%">Cód Procedimento</th>
+                <th>Descrição</th>
+                <th>Qtde</th>
+                <th>Senha</th>
+                <th>Qtde CH</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>234234</td>
+                <td>234234</td>
+                <td>22</td>
+                <td>40932656</td>
+                <td>USG JOELHO ESQUERDO</td>
+                <td>1</td>
+                <td></td>
+                <td>1800</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-12">
+      <hr class="style1 mt-0">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-xs-8">
+    <div class=table-wrapper>
+    <div class="col-md-12">
+      <div class="form-row">
+        <h3 class="ml-2 myh3 mt-2">Log Guia Tiss Mensagem</h3>
+      </div>
+      <table class="table mytable ml-2 mr-2">
+        <thead class="mythead">
+          <tr>
+            <th style="width:15%"> SKU Mensagem</th>
+            <th style="width:10%">Guia</th>
+            <th style="width:20%">Data Mensagem</th>
+            <th style="width:25%">Tipo Mensagem</th>
+            <th style="width:30%">Desc Mensagem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+          <tr>
+            <td>23423423</td>
+            <td>23423234</td>
+            <td>22/10/2020 08:30:59</td>
+            <td>RequisaoAtendimento</td>
+            <td>213123123123123123</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  
+</div>
+</form>

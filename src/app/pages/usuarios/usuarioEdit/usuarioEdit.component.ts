@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../../_models/Usuario';
 
-
 @Component({
   selector: 'app-usuario-edit',
   templateUrl: './usuarioEdit.component.html',

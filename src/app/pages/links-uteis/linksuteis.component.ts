@@ -148,6 +148,7 @@ export class LinksUteisComponent implements OnInit {
 
     this.linkService.getAllLink().subscribe(
       (pax: Link[]) => {
+      // console.log(pax);
       this.links = pax;
       this.linksFiltrados = this.links;
     }, error => {
