@@ -1,12 +1,14 @@
 <div class="container mt-5">
   <div class="card text-white mydiv mb-3 mt-2" style="width: 100%;">
-    <div class="card-header">
-      <div class="row">
-        <h2>{{titulo}}</h2>
-          <div class="text-right">
-          <a mdbWavesEffect (click)="novoFiltro(template)"><i class="fas fa-filter fa-2x"></i>
+    <div class="card-header text-left">
+      <div class="row align-items-center">
+        <div class="col-md-11 mt-2">
+          <h2>{{titulo}}</h2>
+        </div>
+        <div class="col-md-1">
+          <a style="float:right;text-align: center;" mdbWavesEffect (click)="novoFiltro(template)"><i class="fas fa-filter fa-2x"></i>
           </a>
-          </div>
+        </div>
       </div>
       <!-- <a mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon></a> -->
     </div>

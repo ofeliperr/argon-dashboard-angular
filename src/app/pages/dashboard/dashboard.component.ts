@@ -49,8 +49,8 @@ export class DashboardComponent implements OnInit {
 
   lineChartColors: Color[] = [
     {
-      borderColor: 'black',
-      backgroundColor: '#3d2892',
+      borderColor: '#fd625e',
+      // backgroundColor: 'white',
     },
   ];
 
@@ -61,6 +61,8 @@ export class DashboardComponent implements OnInit {
   // GRAFICOS LINHAS - INTRADAY % APROVADAS
   lineChartDataAprovadas: ChartDataSets[] = [
     { data: [50, 100, 150, 100, 50, 100, 200, 150, 100, 200], label: 'Amil' },
+    { data: [100, 200, 100, 100, 50, 200, 150, 50, 50, 100], label: 'Bradesco' },
+    { data: [200, 100, 50, 150, 150, 200, 50, 100, 100, 50], label: 'Allianz' },
   ];
 
   lineChartLabelsAprovadas: Label[] = ['14:01', '14:02', '14:03', '14:05', '14:06', '14:07', '14:08', '14:09', '14:10', '14:11'];
