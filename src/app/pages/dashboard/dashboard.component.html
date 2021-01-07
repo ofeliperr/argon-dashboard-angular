@@ -22,15 +22,22 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-dark ls-1 mb-1">INTRADAY % NEGATIVAS</h6>
+              <h4 style="color: #3d2892;font-weight: bold;">Intraday % Negativas</h4>
             </div>
           </div>
         </div>
         <div class="card-body">
           <!-- Chart -->
-          <div class="chart">
-            <!-- Chart wrapper -->
-            <canvas id="chart-sales" class="chart-canvas"></canvas>
+          <div class="chart-wrapper">
+            <canvas width="500" height="150" baseChart 
+                [datasets]="lineChartData" 
+                [labels]="lineChartLabels" 
+                [options]="lineChartOptions"
+                [colors]="lineChartColors" 
+                [legend]="lineChartLegend" 
+                [chartType]="lineChartType" 
+                [plugins]="lineChartPlugins">
+            </canvas>
           </div>
         </div>
       </div>
@@ -42,45 +49,84 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-dark ls-1 mb-1">INTRADAY % APROVADAS</h6>
+              <h4 style="color: #3d2892;font-weight: bold;">Intraday % Aprovadas</h4>
             </div>
           </div>
         </div>
         <div class="card-body">
           <!-- Chart -->
-          <div class="chart">
-            <!-- Chart wrapper -->
-            <canvas id="chart-aprovadas" class="chart-canvas"></canvas>
+          <div class="chart-wrapper">
+            <canvas width="500" height="150" baseChart 
+                [datasets]="lineChartDataAprovadas" 
+                [labels]="lineChartLabelsAprovadas" 
+                [options]="lineChartOptions"
+                [colors]="lineChartColors" 
+                [legend]="lineChartLegend" 
+                [chartType]="lineChartType" 
+                [plugins]="lineChartPlugins">
+            </canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="col-xl-6 mb-5 mb-xl-0">
       <div class="card bg-gradient-default shadow">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-dark ls-1 mb-1">PRINCIPAIS NEGATIVAS</h6>
+              <h4 style="color: #3d2892;font-weight: bold;">Principais Negativas</h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+           <!-- Chart -->
+           <div class="chart-wrapper">
+            <canvas baseChart 
+            [data]="pieChartDataNegativas" 
+            [labels]="pieChartLabelsNegativas" 
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 mb-5 mb-xl-0">
+      <div class="card bg-gradient-default shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h4 style="color: #3d2892;font-weight: bold;">Principais Aprovadas</h4>
             </div>
           </div>
         </div>
         <div class="card-body">
           <!-- Chart -->
-          <div class="chart">
-            <!-- Chart wrapper -->
-            <canvas id="chart-negativas" class="chart-canvas"></canvas>
+           <div class="chart-wrapper">
+            <canvas baseChart 
+            [data]="pieChartData" 
+            [labels]="pieChartLabels" 
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+            </canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="row mt-5">
-    <div class="col-xl-7 mb-5 mb-xl-0">
+    <div class="col-xl-6 mb-5 mb-xl-0">
       <div class="card shadow">
         <div class="card-header border-0">
-          <form class="m-1 mb-3 mt-3">
+          <h3 style="color: #3d2892;font-weight: bold;">Transações X Aprovadas x Negadas</h3>
+          <!-- <form class="m-1 mb-3 mt-3">
             <div class="row">
               <div class="col">
                 <label>Marca:</label>
@@ -103,12 +149,12 @@
                 </select>
               </div>
             </div>
-          </form>
+          </form> -->
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
+          <table class="table mytable align-items-center table-flush">
+            <thead class="mythead">
               <tr>
                 <th scope="col">Unidade</th>
                 <th scope="col">Qtd. Procedimentos</th>
@@ -118,9 +164,9 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">
+                <td>
                   Alto Santana - DNS
-                </th>
+                </td>
                 <td>
                   2
                 </td>
@@ -132,9 +178,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   Coleta Consultórios
-                </th>
+                </td>
                 <td>
                   3
                 </td>
@@ -146,9 +192,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   Delboni Lapa - Lapa - DLP
-                </th>
+                </td>
                 <td>
                   9
                 </td>
@@ -160,9 +206,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   Delboni Sumaré - DSU
-                </th>
+                </td>
                 <td>
                   3
                 </td>
@@ -174,9 +220,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   Delboni Tatuapé - DTT
-                </th>
+                </td>
                 <td>
                   5
                 </td>
@@ -192,30 +238,46 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-5">
+    <div class="col-xl-6">
       <div class="card shadow">
         <div class="card-header border-0">
-          <div class="row align-items-center">
+          <h3 style="color: #3d2892;font-weight: bold;">Pesquisa CIP</h3>
+          <!-- <div class="row align-items-center">
             <div class="col">
               <h3 class="mb-0">Transações com aprovados da<br/> Unidade - Delboni Auriemo</h3>
             </div>
             <div class="col text-right">
               <a href="#!" class="btn btn-sm btn-primary">Exportar</a>
             </div>
-          </div>
-          <form class="m-1 mb-3 mt-3">
+          </div> -->
+          <!-- <form class="m-1 mb-3 mt-3">
             <div class="row mt-1">
               <div class="col-xl-6">
                 <label>Número CIP:</label>
                 <input type="text" class="form-control">
               </div>
+              <div class="col-xl-2">
+                <a href="#!" class="btn btn-sm btn-primary">Exportar</a>
+              </div>
             </div>
-          </form>
+          </form> -->
+          <div class="form-group row mr-2 ml-2">
+            <div class="col-xs-5">
+              <label for="ex1">Número CIP:</label>
+              <input type="text" class="form-control input-sm">
+            </div>
+            <div class="col-xs-2 mt-4 ml-5">
+              <button class="btn btn-sm btn-outline-primary"> 
+                <i class="fas fa-file-export"></i>&nbsp;
+                Exportar
+              </button>
+            </div>
+          </div>
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
+          <table class="table mytable align-items-center table-flush">
+            <thead class="mythead">
               <tr>
                 <th scope="col">ID AUTORIZADOR</th>
                 <th scope="col">NUM. CIP</th>
@@ -225,9 +287,9 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">
+                <td>
                   77720342
-                </th>
+                </td>
                 <td>
                   L50.L2254165627.1
                 </td>
@@ -239,9 +301,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   77720344
-                </th>
+                </td>
                 <td>
                   L50.L2254165627.1
                 </td>
@@ -253,9 +315,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   77734344
-                </th>
+                </td>
                 <td>
                   L50.L2254165627.1
                 </td>
@@ -267,9 +329,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   777234434
-                </th>
+                </td>
                 <td>
                   L50.L2254165627.1
                 </td>
@@ -281,9 +343,9 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">
+                <td>
                   77756898
-                </th>
+                </td>
                 <td>
                   L50.L2254165627.1
                 </td>
@@ -321,7 +383,7 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
             <label>Data:</label>
             <input type="text" class="form-control" bsDatepicker
             [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY' }" [ngClass]="{'is-invalid': registerForm.get('data').errors
-            && registerForm.get('data').touched}" formControlName="dataEvento" placeholder="">
+            && registerForm.get('data').touched}" formControlName="data" placeholder="">
               <div *ngIf="registerForm.get('data').hasError('required')
             && registerForm.get('data').touched" class="invalid-feedback">
                 Data e hora é obrigatório.

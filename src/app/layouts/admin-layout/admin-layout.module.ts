@@ -9,6 +9,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxMaskModule } from 'ngx-mask';
 // import { ToastrModule } from 'ngx-toastr';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ChartsModule } from 'ng2-charts';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
@@ -18,8 +19,11 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { LinksUteisComponent } from '../../pages/links-uteis/linksuteis.component';
 import { LinksUteisEditComponent } from '../../pages/links-uteis/links-uteisEdit/links-uteisEdit.component';
 import { MarcasComponent } from '../../pages/marcas/marcas.component';
+import { MarcasEditComponent } from '../../pages/marcas/marcasEdit/marcasEdit.component';
 import { OperadorasComponent } from '../../pages/operadoras/operadoras.component';
+import { OperadoraEditComponent } from '../../pages/operadoras/operadoraEdit/operadoraEdit.component';
 import { UnidadesComponent } from '../../pages/unidades/unidades.component';
+import { UnidadesEditComponent } from '../../pages/unidades/unidadesEdit/unidadesEdit.component';
 import { UsuariosComponent } from '../../pages/usuarios/usuarios.component';
 import { UsuarioEditComponent } from '../../pages/usuarios/usuarioEdit/usuarioEdit.component';
 import { PesquisaCipComponent } from '../../pages/pesquisa-cip/pesquisa-cip.component';
@@ -44,7 +48,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     NgxMaskModule.forRoot(),
     ModalModule.forRoot(),
     MDBBootstrapModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    ChartsModule
   ],
   declarations: [
     DashboardComponent,
@@ -52,8 +57,11 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     LinksUteisComponent,
     LinksUteisEditComponent,
     MarcasComponent,
+    MarcasEditComponent,
     OperadorasComponent,
+    OperadoraEditComponent,
     UnidadesComponent,
+    UnidadesEditComponent,
     UsuariosComponent,
     UsuarioEditComponent,
     PesquisaCipComponent,

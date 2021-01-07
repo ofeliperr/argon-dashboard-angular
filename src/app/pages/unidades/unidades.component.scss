@@ -1,0 +1,32 @@
+.btn-warning{
+    background-color: #fb6340;
+    border-color: #fb6340;
+ }
+
+.mytable, tr, td {
+    border-collapse: collapse;
+    border: 1px solid gray;
+    width: 100%;
+    table-layout: fixed;
+    tbody{
+        height:200px;
+        overflow-y:auto;
+        width: 100%;
+        }
+   
+}
+td
+{
+    border: solid 1px;
+    border-left: none;
+    border-right: none;
+}
+
+.mythead {
+    color: white; 
+    background-color: #3d2892; 
+    border-color: #53bec6;
+    border: 2px solid #53bec6;
+    text-align: left; 
+    font-weight: bold;
+} 

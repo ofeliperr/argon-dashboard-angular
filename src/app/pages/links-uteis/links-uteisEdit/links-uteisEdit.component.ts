@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Link } from '../../../_models/Link';
 import { LinkService } from '../../../_services/link.service';
@@ -14,11 +15,13 @@ export class LinksUteisEditComponent implements OnInit {
   titulo = 'Editar Link';
   link: Link = new Link();
   registerForm: FormGroup;
+  modoSalvar = 'post';
 
   constructor(
     private linkService: LinkService
   , private fb: FormBuilder
   , private router: ActivatedRoute
+  , private toastr: ToastrService
   ) {
   }
 
@@ -39,14 +42,45 @@ export class LinksUteisEditComponent implements OnInit {
 
   carregarLink() {
     const idLink = +this.router.snapshot.paramMap.get('id');
-    this.linkService.getLinkById(idLink)
-      .subscribe(
-        (link: Link) => {
-          this.link = Object.assign({}, link);
-          this.registerForm.patchValue(this.link);
-        }
-      );
+    if (idLink !== 0) {
+      this.modoSalvar = 'put';
+      this.linkService.getLinkById(idLink)
+        .subscribe(
+          (pax: Link) => {
+            this.link = Object.assign({}, pax[0]);
+            this.registerForm.patchValue(this.link);
+          }, error => {
+            this.toastr.error(`Erro ao tentar carregar marca: ${error}!`);
+          });
+    }
   }
 
+  salvarLink() {
+    if (this.registerForm.valid) {
+      if (this.modoSalvar === 'post') { // POST
+        this.link = Object.assign({calI_SKU_LINK: 306}, this.registerForm.value);
+
+        this.linkService.postLink(this.link).subscribe(
+          (novoLink: Link) => {
+            // console.log(novoLink);
+            this.toastr.success('Inserido com Sucesso!', 'Link');
+          }, error => {
+            this.toastr.error('Erro ao inserir!', 'Link');
+          }
+        );
+      } else { // PUT
+        this.link = Object.assign({id: this.link.calI_SKU_LINK}, this.registerForm.value);
+        // console.log(this.link);
+
+        this.linkService.putLink(this.link).subscribe(
+          () => {
+            this.toastr.success('Editado com Sucesso!', 'Link');
+          }, error => {
+            this.toastr.error(`Erro ao Editar: ${error}`, 'Link');
+          }
+        );
+      }
+    }
+  }
 
 }

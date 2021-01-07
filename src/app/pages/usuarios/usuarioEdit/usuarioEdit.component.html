@@ -11,9 +11,7 @@
 </div>
 <form [formGroup]="registerForm">
   <div class="row ml-3 mr-3">
-    <div class="col-md-8">
-      <tabset>
-        <tab heading="Usuário">
+    <div class="col-md-12">
           <div class="form-row mt-2">
             <div class="form-group col-md-12">
               <label>Nome:</label>
@@ -77,37 +75,16 @@
               </div>
             </div>
           </div>
-        </tab>
-      </tabset>
-      <div class="row">
-        <div class="col-md-6 d-flex justify-content">
-          <button  [routerLink]="['/usuarios']" class="btn btn-warning my-2" >Voltar</button>
-        </div>
-
-        <div class="col-md-6 d-flex justify-content-end">
-          <button [disabled]="!registerForm.valid" class="btn btn-success my-2">Salvar
-            Alterações</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-row">
-      </div>
-      <div class="card profile-card-2">
-        <div class="card-body pt-3">
-          <h4>{{usuario.nome}}</h4>
-          <p class="card-text">
-            <b>Dados Usuário:</b> 
-          </p>
-          <hr>
-          <p class="card-text">
-            <b>Contatos</b><br>
-            <small class="text-muted">Celular: {{usuario.celular | mask: '(00) 00000-0000'}}</small>
-            <br>
-            <small class="text-muted">E-mail: {{usuario.email}}</small>
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </form>
+
+<div class="row">
+  <div class="col-md-10 d-flex justify-content-end">
+    <button  [routerLink]="['/usuarios']" type="button" class="btn btn-primary btn-sm" >Voltar</button>
+  </div>
+  <div class="col-md-2 d-flex justify-content-end">
+    <button [disabled]="!registerForm.valid" type="button" class="btn btn-success btn-sm">Salvar
+      Alterações</button>
+  </div>
+</div>

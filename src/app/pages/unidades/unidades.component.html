@@ -10,7 +10,7 @@
     </div>
   </div>
   <div>
-    <button class="btn btn-outline-primary" (click)="novaUnidade(template)">
+    <button class="btn btn-outline-primary" [routerLink]="['/unidades/0/edit']">
       <i class="fa fa-plus-circle"></i>&nbsp;
       Novo
     </button>
@@ -18,18 +18,18 @@
 </div>
 
 <!--<h3>Filtro: {{filtroLista}}</h3>-->
-<table class="table table-striped ml-2 mr-2">
-  <thead class="thead-light">
+<table class="table mytable ml-2 mr-2">
+  <thead class="mythead">
     <tr>
-      <th>Código</th>
-      <th>Unidade</th>
-      <th>Marca</th>
+      <th style="width:5%">Código</th>
+      <th style="width:10%">Unidade</th>
+      <th style="width:10%">Marca</th>
       <th>Regional</th>
       <th>Responsável</th>
       <th>Telefone</th>
       <!-- <th>Endereço</th> -->
       <th>Tipo da Unidade</th>
-      <th colspan="2" class="text-center">Opções</th>
+      <th colspan="2" class="text-center" style="width:10%">Opções</th>
     </tr>
 </thead>
 <tbody *ngIf="unidadesFiltrados && unidadesFiltrados.length">
@@ -46,13 +46,13 @@
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
         tooltip="Excluir">
-          <i class="fa fa-eraser"></i>
+          <i class="fas fa-eraser"></i>
         </button>
       </div>
     </td>
     <td>
-      <a (click)="editarUnidade(unidade, template)" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
-        <i class="fa fa-edit"></i>
+      <a [routerLink]="['/unidades', unidade.uniD_COD_UNIDADE, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+        <i class="fas fa-pencil-alt" style="color: white;"></i>
       </a>
     </td>
 </tr>

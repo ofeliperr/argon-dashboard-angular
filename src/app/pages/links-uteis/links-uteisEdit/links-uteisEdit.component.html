@@ -70,7 +70,7 @@
     <button  [routerLink]="['/links-uteis']" type="button" class="btn btn-primary btn-sm" >Voltar</button>
   </div>
   <div class="col-md-2 d-flex justify-content-end">
-    <button [disabled]="!registerForm.valid" type="button" class="btn btn-success btn-sm">Salvar
+    <button [disabled]="!registerForm.valid" type="button" class="btn btn-success btn-sm" (click)="salvarLink()">Salvar
       Alterações</button>
   </div>
 </div>

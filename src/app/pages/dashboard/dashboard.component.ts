@@ -4,17 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import * as Chart from 'chart.js';
+import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
+import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, Color } from 'ng2-charts';
+// import * as Chart from 'chart.js';
 defineLocale('pt-br', ptBrLocale);
-
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2,
-  chartExamplePie
-} from '../../variables/charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,64 +23,59 @@ export class DashboardComponent implements OnInit {
   public clicked1 = false;
   registerForm: FormGroup;
 
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabels: Label[] = [['Alocação Total'], ['Alocação Parcial'], 'Sem Alocação'];
+  public pieChartData: SingleDataSet = [30, 50, 20];
+
+  public pieChartLabelsNegativas: Label[] = [['Operadora 1'], ['Operadora 2'], 'Operadora 3'];
+  public pieChartDataNegativas: SingleDataSet = [30, 50, 20];
+
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
+  // GRAFICOS LINHAS
+  lineChartData: ChartDataSets[] = [
+    { data: [50, 100, 150, 100, 50, 100], label: 'Amil' },
+  ];
+
+  lineChartLabels: Label[] = ['14:01', '14:02', '14:03', '14:05', '14:06', '14:07'];
+
+  lineChartOptions = {
+    responsive: true,
+  };
+
+  lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: '#3d2892',
+    },
+  ];
+
+  lineChartLegend = true;
+  lineChartPlugins = [];
+  lineChartType = 'line';
+
+  // GRAFICOS LINHAS - INTRADAY % APROVADAS
+  lineChartDataAprovadas: ChartDataSets[] = [
+    { data: [50, 100, 150, 100, 50, 100, 200, 150, 100, 200], label: 'Amil' },
+  ];
+
+  lineChartLabelsAprovadas: Label[] = ['14:01', '14:02', '14:03', '14:05', '14:06', '14:07', '14:08', '14:09', '14:10', '14:11'];
+
   constructor(
     private fb: FormBuilder
   , private toastr: ToastrService
   , private localeService: BsLocaleService
   ) {
     localeService.use('pt-br');
+    monkeyPatchChartJsTooltip();
+    monkeyPatchChartJsLegend();
   }
 
   ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-    // const chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-    // const ordersChart = new Chart(chartOrders, {
-    //   type: 'bar',
-    //   options: chartExample2.options,
-    //   data: chartExample2.data
-    // });
-
-    const chartSales = document.getElementById('chart-sales') as HTMLCanvasElement;
-
-    this.salesChart = new Chart(chartSales, {
-      type: 'line',
-      options: chartExample1.options,
-      data: chartExample1.data
-    });
-
-    const chartAprovadas = document.getElementById('chart-aprovadas') as HTMLCanvasElement;
-
-    this.salesChart = new Chart(chartAprovadas, {
-      type: 'line',
-      options: chartExample1.options,
-      data: chartExample1.data
-    });
-
-    const chartNegativas = document.getElementById('chart-negativas') as HTMLCanvasElement;
-
-    this.salesChart = new Chart(chartNegativas, {
-      type: 'pie',
-      options: chartExamplePie.options,
-      data: chartExamplePie.data
-      // ,
-      // colors:  {
-      //   backgroundColor: [
-      //     'red',
-      //     'green',
-      //     'blue',
-      //     'yellow',
-      //   ]
-      // }
-    });
     this.validation();
   }
 

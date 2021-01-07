@@ -10,7 +10,7 @@
     </div>
   </div>
   <div>
-    <button class="btn btn-outline-primary" (click)="novaOperadora(template)">
+    <button class="btn btn-outline-primary" [routerLink]="['/operadoras/0/edit']">
       <i class="fa fa-plus-circle"></i>&nbsp;
       Novo
     </button>
@@ -18,12 +18,12 @@
 </div>
 
 <!--<h3>Filtro: {{filtroLista}}</h3>-->
-<table class="table table-striped ml-2 mr-2">
-  <thead class="thead-light">
+<table class="table mytable ml-2 mr-2">
+  <thead class="mythead">
     <tr>
       <th style="width:10%">Código</th>
-      <th style="width:70%">Descrição da Operadora</th>
-      <th colspan="2" class="text-center" style="width:20%">Opções</th>
+      <th style="width:80%">Descrição da Operadora</th>
+      <th colspan="2" class="text-center" style="width:10%">Opções</th>
     </tr>
 </thead>
 <tbody *ngIf="operadorasFiltrados && operadorasFiltrados.length">
@@ -34,13 +34,13 @@
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
         tooltip="Excluir">
-          <i class="fa fa-eraser"></i>
+          <i class="fas fa-eraser"></i>
         </button>
       </div>
     </td>
     <td>
-      <a [routerLink]="['/operadora', operadora.id, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
-        <i class="fa fa-edit"></i>
+      <a [routerLink]="['/operadoras', operadora.opeR_COD_OPERADORA, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+        <i class="fas fa-pencil-alt" style="color: white;"></i>
       </a>
     </td>
 </tr>

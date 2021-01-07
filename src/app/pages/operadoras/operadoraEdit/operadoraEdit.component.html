@@ -1,0 +1,63 @@
+<div class="header bg-gradient-info pb-3 pt-5 pt-md-6">
+
+</div>
+<div class="card text-white mydiv mb-3 mt-2" style="width: 100%;">
+  <div class="card-header" style="height: 50px;">
+    <div class="row">
+      <a mdbWavesEffect [routerLink]="['/operadoras']"><i class="fas fa-long-arrow-alt-left fa-2x" ></i></a>
+      <h3>{{titulo}}</h3>
+  </div>
+  </div>
+</div>
+
+<form [formGroup]="registerForm">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Nome da Operadora:</label>
+      <input type="text" class="form-control" 
+      [ngClass]="{'is-invalid': registerForm.get('opeR_NOM_OPERADORA').errors && registerForm.get('opeR_NOM_OPERADORA').touched}"
+      formControlName="opeR_NOM_OPERADORA" placeholder="Preencha o nome">
+      <div *ngIf="registerForm.get('opeR_NOM_OPERADORA').hasError('required') && registerForm.get('opeR_NOM_OPERADORA').touched" class="invalid-feedback">
+        Nome é obrigatório.
+      </div>
+      <div *ngIf="registerForm.get('opeR_NOM_OPERADORA').hasError('minlength') && registerForm.get('opeR_NOM_OPERADORA').touched" class="invalid-feedback">
+        Nome deve ter no mínimo 4 caracteres.
+      </div>
+      <div *ngIf="registerForm.get('opeR_NOM_OPERADORA').hasError('maxlength') && registerForm.get('opeR_NOM_OPERADORA').touched" class="invalid-feedback">
+        Nome deve ter no máximo 150 caracteres.
+      </div>
+    </div>
+  </div>  
+  <label class="class-bold">Para testes de conectividade</label>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Código da Negativa:</label>
+      <input type="text" class="form-control"
+      formControlName="opeR_COD_NEGA_OK" placeholder="Preencha o Código">
+    </div>
+  </div>   
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Texto da Requisição:</label>
+      <textarea class="form-control"
+      formControlName="opeR_TXT_REQUISICAO"></textarea>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-1">
+      <label>Ativa:</label>
+      <input type="checkbox" class="form-control"
+      formControlName="opeR_ATIVA">
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col-md-10 d-flex justify-content-end">
+    <button  [routerLink]="['/operadoras']" type="button" class="btn btn-primary btn-sm" >Voltar</button>
+  </div>
+  <div class="col-md-2 d-flex justify-content-end">
+    <button [disabled]="!registerForm.valid" type="button" class="btn btn-success btn-sm" (click)="salvarOperadora()">Salvar
+      Alterações</button>
+  </div>
+</div>

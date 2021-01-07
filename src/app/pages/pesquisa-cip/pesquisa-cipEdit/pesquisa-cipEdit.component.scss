@@ -10,13 +10,8 @@ hr.style1{
     color: #3d2892; 
 } 
 
-.mytable {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid gray;
-}
-
 .mytable, tr, td {
+    border-collapse: collapse;
     border: 1px solid gray;
     width: 100%;
     table-layout: fixed;
@@ -25,15 +20,21 @@ hr.style1{
         overflow-y:auto;
         width: 100%;
         }
+   
 }
-
+td
+{
+    border: solid 1px;
+    border-left: none;
+    border-right: none;
+}
 
 .mythead {
     color: white; 
     background-color: #3d2892; 
     border-color: #53bec6;
-    border: 1px solid #53bec6;
-    text-align: center; 
+    border: 2px solid #53bec6;
+    text-align: left; 
     font-weight: bold;
 } 
 
@@ -47,3 +48,13 @@ hr.style1{
       background: #F3F5F6;
 }
   
+.btn-primary{
+    background-color: rgb(231, 231, 231);
+    color: #3d2892; 
+    border-color:  rgb(231, 231, 231);;
+ }
+
+ .btn-success{
+    background-color:#53bec6;
+    border-color: #53bec6;
+ }

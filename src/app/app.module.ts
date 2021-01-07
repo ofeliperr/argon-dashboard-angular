@@ -1,9 +1,10 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -20,6 +21,7 @@ import { LinkService } from './_services/link.service';
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     NgbModule,
@@ -29,7 +31,8 @@ import { LinkService } from './_services/link.service';
       timeOut: 3000,
       preventDuplicates: true,
       progressBar: true
-   })
+    }),
+    ChartsModule
   ],
   declarations: [
     AppComponent,

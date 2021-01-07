@@ -10,7 +10,8 @@
     </div>
   </div>
   <div>
-    <button class="btn btn-outline-primary" (click)="novoLink(template)">
+    <!-- <button class="btn btn-outline-primary" (click)="novoLink(template)"> -->
+    <button class="btn btn-outline-primary" [routerLink]="['/links-uteis/0/edit']"> 
       <i class="fa fa-plus-circle"></i>&nbsp;
       Novo
     </button>
@@ -18,15 +19,15 @@
 </div>
 
 <!--<h3>Filtro: {{filtroLista}}</h3>-->
-<table class="table table-striped ml-2 mr-2">
-  <thead class="thead-light">
+<table class="table mytable ml-2 mr-2">
+  <thead class="mythead">
     <tr>
-      <th>#</th>
-      <th>Nome do Link</th>
-      <th>Usuário</th>
-      <th>Senha</th>
-      <th>Link</th>
-      <th colspan="2" class="text-center">Opções</th>
+      <th style="width:10%">Código</th>
+      <th style="width:20%">Nome do Link</th>
+      <th style="width:10%">Usuário</th>
+      <th style="width:10%">Senha</th>
+      <th style="width:40%">Link</th>
+      <th colspan="2" class="text-center" style="width:10%">Opções</th>
     </tr>
 </thead>
 <tbody *ngIf="linksFiltrados && linksFiltrados.length">
@@ -40,13 +41,13 @@
       <div class="btn-group">
         <button class="btn btn-sm btn-danger" 
         tooltip="Excluir">
-          <i class="fa fa-eraser"></i>
+        <i class="fas fa-eraser"></i>
         </button>
       </div>
     </td>
     <td>
       <a  [routerLink]="['/links-uteis', link.calI_SKU_LINK, 'edit']" tooltip="Editar Link" class="btn btn-sm btn-warning">
-        <i class="fa fa-edit"></i>
+        <i class="fas fa-pencil-alt" style="color: white;"></i>
       </a>
     </td>
 </tr>

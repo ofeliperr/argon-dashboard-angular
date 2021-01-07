@@ -3,9 +3,13 @@
 </div>
 <div class="card text-white mydiv mb-3 mt-2" style="width: 100%;">
   <div class="card-header" style="height: 50px;">
-    <h3>{{titulo}}</h3>
+    <div class="row">
+      <a mdbWavesEffect [routerLink]="['/pesquisacip']"><i class="fas fa-long-arrow-alt-left fa-2x" ></i></a>
+      <h3>{{titulo}}</h3>
+  </div>
   </div>
 </div>
+
 <form [formGroup]="registerForm">
   <div class="container">
     <div class="form-row">
@@ -190,7 +194,7 @@
             <th>Data do Trace</th>
             <th>Nível Trace</th>
             <th>Tipo Trace</th>
-            <th>Txt Trace</th>
+            <th style="width:30%">Txt Trace</th>
           </tr>
         </thead>
         <tbody>
@@ -422,3 +426,9 @@
   
 </div>
 </form>
+
+<div class="row">
+  <div class="col-md-11 d-flex justify-content-end">
+    <button  [routerLink]="['/pesquisacip']" type="button" class="btn btn-primary btn-sm" >Voltar</button>
+  </div>
+</div>
