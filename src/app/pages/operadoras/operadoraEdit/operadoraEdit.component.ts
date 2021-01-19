@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Operadora } from '../../../_models/Operadora';
 import { OperadoraService } from '../../../_services/operadora.service';
 
@@ -22,6 +22,7 @@ export class OperadoraEditComponent implements OnInit {
   , private fb: FormBuilder
   , private router: ActivatedRoute
   , private toastr: ToastrService
+  , public route: Router
   ) {
   }
 
@@ -51,6 +52,8 @@ export class OperadoraEditComponent implements OnInit {
       }, error => {
         this.toastr.error(`Erro ao tentar carregar operadora: ${error}!`);
       });
+    } else {
+      this.titulo = 'Nova Operadora';
     }
   }
 
@@ -65,6 +68,7 @@ export class OperadoraEditComponent implements OnInit {
           (novaOperadora: Operadora) => {
             // console.log(novaOperadora);
             this.toastr.success('Inserida com Sucesso!', 'Operadora');
+            this.route.navigateByUrl('/operadoras');
           }, error => {
             this.toastr.error('Erro ao inserir!', 'Operadora');
           }
@@ -75,6 +79,7 @@ export class OperadoraEditComponent implements OnInit {
         this.operadoraService.putOperadora(this.operadora).subscribe(
           () => {
             this.toastr.success('Editada com Sucesso!', 'Operadora');
+            this.route.navigateByUrl('/operadoras');
           }, error => {
             this.toastr.error(`Erro ao Editar: ${error}`, 'Operadora');
           }

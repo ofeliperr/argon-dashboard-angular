@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Link } from '../../../_models/Link';
 import { LinkService } from '../../../_services/link.service';
 
@@ -22,6 +22,7 @@ export class LinksUteisEditComponent implements OnInit {
   , private fb: FormBuilder
   , private router: ActivatedRoute
   , private toastr: ToastrService
+  , public route: Router
   ) {
   }
 
@@ -52,6 +53,8 @@ export class LinksUteisEditComponent implements OnInit {
           }, error => {
             this.toastr.error(`Erro ao tentar carregar marca: ${error}!`);
           });
+    } else {
+      this.titulo = 'Novo Link';
     }
   }
 
@@ -64,6 +67,7 @@ export class LinksUteisEditComponent implements OnInit {
           (novoLink: Link) => {
             // console.log(novoLink);
             this.toastr.success('Inserido com Sucesso!', 'Link');
+            this.route.navigateByUrl('/links-uteis');
           }, error => {
             this.toastr.error('Erro ao inserir!', 'Link');
           }
@@ -75,6 +79,7 @@ export class LinksUteisEditComponent implements OnInit {
         this.linkService.putLink(this.link).subscribe(
           () => {
             this.toastr.success('Editado com Sucesso!', 'Link');
+            this.route.navigateByUrl('/links-uteis');
           }, error => {
             this.toastr.error(`Erro ao Editar: ${error}`, 'Link');
           }

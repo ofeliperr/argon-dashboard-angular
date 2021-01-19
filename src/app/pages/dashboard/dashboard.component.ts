@@ -16,6 +16,7 @@ defineLocale('pt-br', ptBrLocale);
 })
 export class DashboardComponent implements OnInit {
   titulo = 'Dashboard';
+  public tempoRefresh = '';
   public datasets: any;
   public data: any;
   public salesChart;
@@ -78,6 +79,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tempoRefresh = '30 segundos';
     this.validation();
   }
 

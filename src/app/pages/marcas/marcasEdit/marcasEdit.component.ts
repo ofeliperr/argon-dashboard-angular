@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Marca } from '../../../_models/Marca';
 import { MarcaService } from '../../../_services/marca.service';
 
@@ -22,6 +22,7 @@ export class MarcasEditComponent implements OnInit {
   , private fb: FormBuilder
   , private router: ActivatedRoute
   , private toastr: ToastrService
+  , public route: Router
   ) {
   }
 
@@ -52,6 +53,8 @@ export class MarcasEditComponent implements OnInit {
       }, error => {
         this.toastr.error(`Erro ao tentar carregar marca: ${error}!`);
       });
+    } else {
+      this.titulo = 'Nova Marca';
     }
   }
 
@@ -65,6 +68,7 @@ export class MarcasEditComponent implements OnInit {
           (novaMarca: Marca) => {
             // console.log(novaMarca);
             this.toastr.success('Inserida com Sucesso!', 'Marca');
+            this.route.navigateByUrl('/marcas');
           }, error => {
             this.toastr.error('Erro ao inserir!', 'Marca');
           }
@@ -75,6 +79,7 @@ export class MarcasEditComponent implements OnInit {
         this.marcaService.putMarca(this.marca).subscribe(
           () => {
             this.toastr.success('Editada com Sucesso!', 'Marca');
+            this.route.navigateByUrl('/marcas');
           }, error => {
             this.toastr.error(`Erro ao Editar: ${error}`, 'Marca');
           }
