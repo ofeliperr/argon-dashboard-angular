@@ -10,6 +10,7 @@ import { NgxMaskModule } from 'ngx-mask';
 // import { ToastrModule } from 'ngx-toastr';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ChartsModule } from 'ng2-charts';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
@@ -49,6 +50,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ModalModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     ChartsModule
   ],
   declarations: [

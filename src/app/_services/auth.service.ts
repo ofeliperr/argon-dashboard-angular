@@ -20,7 +20,10 @@ export class AuthService {
       .post<User>(`${this.baseURL}/login`, model)
       .pipe(
         tap((u: User) => {
-          sessionStorage.setItem('username', u.usmO_NOM_USUARIO);
+          localStorage.setItem('userid', u.usmO_SKU_USUARIO);
+          localStorage.setItem('username', u.usmO_NOM_USUARIO);
+          // sessionStorage.setItem('userid', u.usmO_SKU_USUARIO);
+          // sessionStorage.setItem('username', u.usmO_NOM_USUARIO);
           // localStorage.setItem('token', u.authorization);
           // this.subjLoggedIn$.next(true);
           // this.subjUser$.next(u);

@@ -4,7 +4,7 @@
 
   <!-- Navbar brand -->
   <mdb-navbar-brand>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="dashboard">
         <img src="./assets/img/brand/dasa_logo_branco.jpg" height="30" class="d-inline-block align-top" alt="">
     </a>
   </mdb-navbar-brand>
@@ -45,7 +45,7 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Nome Usuário<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> {{nomeUsuario}}<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </links>

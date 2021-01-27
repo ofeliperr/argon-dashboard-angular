@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { ChartsModule } from 'ng2-charts';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -32,7 +33,8 @@ import { LinkService } from './_services/link.service';
       preventDuplicates: true,
       progressBar: true
     }),
-    ChartsModule
+    ChartsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   declarations: [
     AppComponent,

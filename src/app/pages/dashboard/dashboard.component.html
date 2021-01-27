@@ -34,7 +34,7 @@
             <canvas width="500" height="150" baseChart 
                 [datasets]="lineChartData" 
                 [labels]="lineChartLabels" 
-                [options]="lineChartOptions"
+                [options]="lineChartOptions1"
                 [colors]="lineChartColors" 
                 [legend]="lineChartLegend" 
                 [chartType]="lineChartType" 
@@ -407,43 +407,95 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
             </div>
           <div class="form-group col-md-3">
             <label>Exibição:</label>
-            <select class="browser-default custom-select">
-              <option>Últimos 30 minutos</option>
+            <select class="browser-default custom-select" formControlName="exibicao">
+              <option [value]="tempo" *ngFor="let tempo of temposExibicao">{{tempo}}</option>
             </select>
           </div>
           <div class="form-group col-md-3">
-            <label>Tempo Refresh:</label>
-            <select class="browser-default custom-select" name="tempoRefresh"  [(ngModel)]="tempoRefresh">
-              <option>15 segundos</option>
-              <option>30 segundos</option>
-              <option>60 segundos</option>
+            <label>Paginação:</label>
+            <select class="browser-default custom-select" formControlName="paginacao">
+                <option [value]="tempo" *ngFor="let tempo of temposPaginacao">{{tempo}}</option>
             </select>
           </div>
         </div>  
         <div class="form-row">
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-6">
             <label>Regional:</label>
-            <select class="browser-default custom-select">
-              <option>Todas</option>
-            </select>
+            <!-- <select class="browser-default custom-select"
+            formControlName="regional" 
+            required 
+            ngModel>
+              <option value="">Selecione</option>
+              <option *ngFor="let regional of regionais">{{regional.regI_NOM_REGIONAL}}</option>
+            </select> -->
+            <ng-multiselect-dropdown
+            [placeholder]="'selecione'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            formControlName="regional" 
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-6">
             <label>Marca:</label>
-            <select class="browser-default custom-select">
-              <option>Todas</option>
-            </select>
+            <!-- <select class="browser-default custom-select"
+            formControlName="marca" 
+            required 
+            ngModel>
+              <option value="">Selecione</option>
+              <option *ngFor="let marca of marcas">{{marca.marC_NOM_MARCA}}</option>
+            </select> -->
+            <ng-multiselect-dropdown
+            [placeholder]="'selecione'"
+            [settings]="dropdownSettings1"
+            [data]="marcas"
+            formControlName="marca" 
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
           </div>
-          <div class="form-group col-md-3">
+        </div>  
+        <div class="form-row">
+          <div class="form-group col-md-6">
             <label>Unidade:</label>
-            <select class="browser-default custom-select">
-              <option>Todas</option>
-            </select>
+            <!-- <select class="browser-default custom-select"
+            formControlName="unidade" 
+            required 
+            ngModel>
+              <option value="">Selecione</option>
+              <option *ngFor="let unidade of unidades">{{unidade.uniD_NOM_UNIDADE}}</option>
+            </select> -->
+            <ng-multiselect-dropdown
+            [placeholder]="'selecione'"
+            [settings]="dropdownSettings2"
+            [data]="unidades"
+            formControlName="unidade" 
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-6">
             <label>Operadora:</label>
-            <select class="browser-default custom-select">
-              <option>Todas</option>
-            </select>
+            <!-- <select class="browser-default custom-select"
+            formControlName="operadora" 
+            required 
+            ngModel>
+              <option value="">Selecione</option>
+              <option *ngFor="let operadora of operadoras">{{operadora.opeR_NOM_OPERADORA}}</option>
+            </select> -->
+            <ng-multiselect-dropdown
+            [placeholder]="'selecione'"
+            [settings]="dropdownSettings3"
+            [data]="operadoras"
+            formControlName="operadora" 
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
           </div>
         </div>   
       </form>
@@ -452,7 +504,7 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
       <button class="btn btn-secondary" (click)="template.hide()">
         Cancelar
       </button>
-      <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid">
+      <button class="btn btn-primary ml-auto" (click)="filtrarDashboad(template)" [disabled]="!registerForm.valid">
         Filtrar
       </button>
     </div>

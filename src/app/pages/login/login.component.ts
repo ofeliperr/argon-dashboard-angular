@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.model)
     .subscribe(
       (user) => {
-        console.log(user);
-        console.log(localStorage.getItem('username'));
+        // console.log(user);
+        // console.log(localStorage.getItem('username'));
         this.router.navigateByUrl('/dashboard');
         this.toastr.success(`Bem vindo`);
         // this.loading = false;

@@ -80,6 +80,9 @@ export class UnidadesEditComponent implements OnInit {
       if (this.modoSalvar === 'post') { // POST
         this.unidade = Object.assign({uniD_COD_UNIDADE: 1}, this.registerForm.value);
         this.unidade.uniD_COD_UNIDADE = 1;
+        this.unidade.tiuN_SKU_TIPO_UNIDADE = this.tiposUnidade.find(t => t.tipo === this.unidade.tipoUnidade).codigo;
+        this.unidade.marC_COD_MARCA = this.marcas.find(m => m.marC_NOM_MARCA === this.unidade.marC_NOM_MARCA).marC_COD_MARCA;
+        this.unidade.regI_COD_REGIONAL = this.regionais.find(r => r.regI_NOM_REGIONAL === this.unidade.regI_NOM_REGIONAL).regI_COD_REGIONAL;
 
         this.unidadeService.postUnidade(this.unidade).subscribe(
           (novaUnidade: Unidade) => {
@@ -95,7 +98,7 @@ export class UnidadesEditComponent implements OnInit {
         this.unidade.tiuN_SKU_TIPO_UNIDADE = this.tiposUnidade.find(t => t.tipo === this.unidade.tipoUnidade).codigo;
         this.unidade.marC_COD_MARCA = this.marcas.find(m => m.marC_NOM_MARCA === this.unidade.marC_NOM_MARCA).marC_COD_MARCA;
         this.unidade.regI_COD_REGIONAL = this.regionais.find(r => r.regI_NOM_REGIONAL === this.unidade.regI_NOM_REGIONAL).regI_COD_REGIONAL;
-        console.log(this.unidade);
+        // console.log(this.unidade);
 
         this.unidadeService.putUnidade(this.unidade).subscribe(
           () => {
@@ -113,6 +116,10 @@ export class UnidadesEditComponent implements OnInit {
     this.unidadeService.getAllMarca().subscribe(
       (pax: Marca[]) => {
       this.marcas = pax;
+      this.marcas.sort(function (obj1, obj2) {
+        return obj1.marC_NOM_MARCA < obj2.marC_NOM_MARCA ? -1 :
+        (obj1.marC_NOM_MARCA > obj2.marC_NOM_MARCA ? 1 : 0);
+      });
     }, error => {
       this.toastr.error(`Erro ao tentar buscar marcas: ${error}!`);
     });
@@ -122,6 +129,10 @@ export class UnidadesEditComponent implements OnInit {
     this.unidadeService.getAllRegional().subscribe(
       (pax: Regional[]) => {
       this.regionais = pax;
+      this.regionais.sort(function (obj1, obj2) {
+        return obj1.regI_NOM_REGIONAL < obj2.regI_NOM_REGIONAL ? -1 :
+        (obj1.regI_NOM_REGIONAL > obj2.regI_NOM_REGIONAL ? 1 : 0);
+      });
     }, error => {
       this.toastr.error(`Erro ao tentar buscar regionais: ${error}!`);
     });
