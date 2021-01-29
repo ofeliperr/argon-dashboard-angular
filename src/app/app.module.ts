@@ -15,8 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
-import { LinkService } from './_services/link.service';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   imports: [
@@ -41,9 +40,7 @@ import { LinkService } from './_services/link.service';
     AdminLayoutComponent,
     AuthLayoutComponent
   ],
-  providers: [
-    LinkService
- ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

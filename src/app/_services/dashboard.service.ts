@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { DashFilter } from '../_models/DashFilter';
 import { Dashboard } from '../_models/Dashboard';
 import { Regional } from '../_models/Regional';
@@ -13,12 +14,11 @@ import { Operadora } from '../_models/Operadora';
 })
 export class DashboardService {
 
-  baseURL = 'https://localhost:44385/api/Dashboard';
-
-  baseURLRegional = 'https://localhost:44385/api/Regional';
-  baseURLMarca = 'https://localhost:44385/api/Marca';
-  baseURLUnidade = 'https://localhost:44385/api/Unidade';
-  baseURLOperadora = 'https://localhost:44385/api/Operadora';
+  private baseURL = environment.baseUrl + '/api/Dashboard';
+  private baseURLRegional = environment.baseUrl + '/api/Regional';
+  private baseURLMarca = environment.baseUrl + '/api/Marca';
+  private baseURLUnidade = environment.baseUrl + '/api/Unidade';
+  private baseURLOperadora = environment.baseUrl + '/api/Operadora';
 
   constructor(private http: HttpClient) { }
 

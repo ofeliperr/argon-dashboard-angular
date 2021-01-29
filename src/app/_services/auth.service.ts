@@ -1,19 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './user';
+import { Auth } from './Auth';
 import { map, tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject, of } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Text } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  baseURL = 'https://localhost:44385/api/Usuario';
+  private baseURL = environment.baseUrl + '/api/Usuario';
+  private baseURLAuth = environment.baseUrl + '/api/Auth/Token';
+  private subjUser$: BehaviorSubject<User> = new BehaviorSubject(null);
+  private subjLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
   // jwtHelper = new JwtHelperService();
   // decodedToken: any;
 
   constructor(private http: HttpClient) { }
+
+  autenticar(model: any) {
+    return this.http
+    .post(this.baseURLAuth, model, {responseType: 'text'})
+    .pipe(
+      tap((u: string) => {
+        localStorage.setItem('token', u);
+        this.subjLoggedIn$.next(true);
+        // this.subjUser$.next(u);
+      })
+    );
+  }
 
   login(model: any): Observable<User> {
     return this.http
@@ -44,6 +63,27 @@ export class AuthService {
   //   return !this.jwtHelper.isTokenExpired(token);
   // }
 
+  isAuthenticated(): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    if (token && !this.subjLoggedIn$.value) {
+      return this.checkTokenValidation();
+    }
+    return this.subjLoggedIn$.asObservable();
+  }
 
+  checkTokenValidation(): Observable<boolean> {
+    if (!localStorage.getItem('token')) {
+      return of(true);
+    } else {
+      this.logout();
+      return of(false);
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.subjLoggedIn$.next(false);
+    this.subjUser$.next(null);
+  }
 
 }

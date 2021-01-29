@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Operadora } from '../_models/Operadora';
 
 @Injectable({
@@ -8,8 +9,7 @@ import { Operadora } from '../_models/Operadora';
 })
 export class OperadoraService {
 
-  // baseURL = 'http://10.1.255.23:83/api/Operadora';
-  baseURL = 'https://localhost:44385/api/Operadora';
+  private baseURL = environment.baseUrl + '/api/Operadora';
 
   constructor(private http: HttpClient) { }
 

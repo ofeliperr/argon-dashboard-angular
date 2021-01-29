@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Marca } from '../_models/Marca';
 
 @Injectable({
@@ -8,8 +9,7 @@ import { Marca } from '../_models/Marca';
 })
 export class MarcaService {
 
-  // baseURL = 'http://10.1.255.23:83/api/Marca';
-  baseURL = 'https://localhost:44385/api/Marca';
+  private baseURL = environment.baseUrl + '/api/Marca';
 
   constructor(private http: HttpClient) { }
 

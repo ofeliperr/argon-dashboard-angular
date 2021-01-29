@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   model: any = {};
+  modelAuth: any = {};
 
   constructor(
     private authService: AuthService
@@ -17,7 +18,23 @@ export class LoginComponent implements OnInit, OnDestroy {
   , private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.modelAuth.user = 'fribeiro';
+    this.modelAuth.password = 'Boog@0101';
+    console.log(this.modelAuth);
+
+    this.authService.autenticar(this.modelAuth)
+    .subscribe(
+      (ret) => {
+        // console.log(localStorage.getItem('token').toString());
+      },
+      (err) => {
+        this.toastr.error(`Falha ao tentar autenticar`);
+        console.log(err);
+      }
+
+    );
   }
+
   ngOnDestroy() {
   }
 

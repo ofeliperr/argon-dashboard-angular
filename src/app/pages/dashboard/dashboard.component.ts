@@ -37,7 +37,8 @@ export class DashboardComponent implements OnInit  {
   public clicked1 = false;
   registerForm: FormGroup;
   regionais: Regional[];
-  marcas: Marca[];
+  marcas: Marca[] = [];
+  marcasSelecionadas: Marca[] = [];
   unidades: Unidade[];
   operadoras: Operadora[] = [];
   operadorasSelecionadas: Operadora[] = [];
@@ -61,7 +62,7 @@ export class DashboardComponent implements OnInit  {
   nrSelect = 47;
   timeLeft = 60;
   timeConf = 60;
-  iContOperadora = 0;
+  iContMarca = 0;
   interval;
 
   // GRAFICOS LINHAS
@@ -188,7 +189,7 @@ export class DashboardComponent implements OnInit  {
       allowSearchFilter: true
     };
 
-    this.iContOperadora = 0;
+    this.iContMarca = 0;
     this.getDashboard();
     this.startTimer();
   }
@@ -333,28 +334,32 @@ export class DashboardComponent implements OnInit  {
   getDashboard() {
     // console.log(this.registerForm.value);
     let iOperadora: number;
+    let iMarca: number;
     let dataFiltro: string;
     let iPeriodo: string;
 
-    if (this.operadoras.length > 0) {
-      this.operadorasSelecionadas = this.registerForm.get('operadora').value;
+    console.log(this.marcas.length);
+    // TIMER ENTRE MARCAS
+    if (this.marcas.length > 0) {
+      this.marcasSelecionadas = this.registerForm.get('marca').value;
 
-      if (this.operadorasSelecionadas.length <= 0) {
-        if (this.iContOperadora > (this.operadoras.length - 1)) {
-          this.iContOperadora = 0;
+      if (this.marcasSelecionadas.length <= 0) {
+        if (this.iContMarca > (this.marcas.length - 1)) {
+          this.iContMarca = 0;
         }
-        iOperadora = this.operadoras[this.iContOperadora].opeR_COD_OPERADORA;
-        this.iContOperadora++;
+        iMarca = this.marcas[this.iContMarca].marC_COD_MARCA;
+        this.iContMarca++;
       } else {
-        if (this.iContOperadora > (this.operadorasSelecionadas.length - 1)) {
-          this.iContOperadora = 0;
+        if (this.iContMarca > (this.marcasSelecionadas.length - 1)) {
+          this.iContMarca = 0;
         }
-        iOperadora = this.operadorasSelecionadas[this.iContOperadora].opeR_COD_OPERADORA;
-        this.iContOperadora++;
+        iMarca = this.marcasSelecionadas[this.iContMarca].marC_COD_MARCA;
+        this.iContMarca++;
       }
     } else {
-      iOperadora = 338915;
+      iMarca = 1;
     }
+    iOperadora = 1;
 
     // PERIODO EXIBICAO
     if (this.registerForm.get('data').value) {
@@ -378,7 +383,7 @@ export class DashboardComponent implements OnInit  {
       iPeriodo = this.registerForm.get('exibicao').value;
     }
 
-    this.dashfilter = {IdMarca: 1, IdUnidade: 1, IdOperadora: iOperadora, Data: dataFiltro, Periodo: iPeriodo};
+    this.dashfilter = {IdMarca: iMarca, IdUnidade: 1, IdOperadora: iOperadora, Data: dataFiltro, Periodo: iPeriodo};
 
     this.dashboardService.getDashboard(this.dashfilter).subscribe(
       (pax: Dashboard) => {
@@ -449,7 +454,7 @@ export class DashboardComponent implements OnInit  {
     template.hide();
     this.timeConf = this.registerForm.get('paginacao').value;
     this.timeLeft = this.timeConf;
-    this.iContOperadora = 0;
+    this.iContMarca = 0;
     this.startTimer();
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Unidade } from '../_models/Unidade';
 import { Marca } from '../_models/Marca';
 import { Regional } from '../_models/Regional';
@@ -10,11 +11,9 @@ import { Regional } from '../_models/Regional';
 })
 export class UnidadeService {
 
-  // baseURL = 'http://10.1.255.23:83/api/Unidade';
-  // baseURLMarca = 'http://10.1.255.23:83/api/Marca';
-  baseURL = 'https://localhost:44385/api/Unidade';
-  baseURLMarca = 'https://localhost:44385/api/Marca';
-  baseURLRegional = 'https://localhost:44385/api/Regional';
+  private baseURL = environment.baseUrl + '/api/Unidade';
+  private baseURLMarca = environment.baseUrl + '/api/Marca';
+  private baseURLRegional = environment.baseUrl + '/api/Regional';
 
   constructor(private http: HttpClient) { }
 
