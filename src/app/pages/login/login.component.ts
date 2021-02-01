@@ -18,21 +18,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   , private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.modelAuth.user = 'fribeiro';
-    this.modelAuth.password = 'Boog@0101';
-    console.log(this.modelAuth);
-
-    this.authService.autenticar(this.modelAuth)
-    .subscribe(
-      (ret) => {
-        // console.log(localStorage.getItem('token').toString());
-      },
-      (err) => {
-        this.toastr.error(`Falha ao tentar autenticar`);
-        console.log(err);
-      }
-
-    );
   }
 
   ngOnDestroy() {
@@ -43,8 +28,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.model)
     .subscribe(
       (user) => {
-        // console.log(user);
-        // console.log(localStorage.getItem('username'));
         this.router.navigateByUrl('/dashboard');
         this.toastr.success(`Bem vindo`);
         // this.loading = false;
@@ -55,19 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         // this.usuarioInvalido = true;
         // this.loading = false;
       }
-
     );
-
-    // this.authService.login(this.model)
-    //   .subscribe(
-    //     () => {
-    //       this.router.navigate(['/dashboard']);
-    //       this.toastr.success(`Bem vindo`);
-    //     },
-    //     error => {
-    //       this.toastr.error(`Falha ao tentar logar`);
-    //     }
-    //   );
   }
 
 }

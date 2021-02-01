@@ -359,7 +359,7 @@ export class DashboardComponent implements OnInit  {
     } else {
       iMarca = 1;
     }
-    iOperadora = 1;
+    iOperadora = 326305;
 
     // PERIODO EXIBICAO
     if (this.registerForm.get('data').value) {

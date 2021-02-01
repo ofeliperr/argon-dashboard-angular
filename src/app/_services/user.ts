@@ -4,4 +4,5 @@ export interface User {
     usmO_TXT_LOGIN: string;
     usmO_EMAIL?: string;
     usmO_ATIVO?: boolean;
+    usmO_TOKEN_USUARIO: string;
 }

@@ -13,7 +13,6 @@ import { Text } from '@angular/compiler';
 export class AuthService {
 
   private baseURL = environment.baseUrl + '/api/Usuario';
-  private baseURLAuth = environment.baseUrl + '/api/Auth/Token';
   private subjUser$: BehaviorSubject<User> = new BehaviorSubject(null);
   private subjLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -22,18 +21,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  autenticar(model: any) {
-    return this.http
-    .post(this.baseURLAuth, model, {responseType: 'text'})
-    .pipe(
-      tap((u: string) => {
-        localStorage.setItem('token', u);
-        this.subjLoggedIn$.next(true);
-        // this.subjUser$.next(u);
-      })
-    );
-  }
-
   login(model: any): Observable<User> {
     return this.http
       .post<User>(`${this.baseURL}/login`, model)
@@ -41,12 +28,10 @@ export class AuthService {
         tap((u: User) => {
           localStorage.setItem('userid', u.usmO_SKU_USUARIO);
           localStorage.setItem('username', u.usmO_NOM_USUARIO);
-          // sessionStorage.setItem('userid', u.usmO_SKU_USUARIO);
-          // sessionStorage.setItem('username', u.usmO_NOM_USUARIO);
-          // localStorage.setItem('token', u.authorization);
-          // this.subjLoggedIn$.next(true);
-          // this.subjUser$.next(u);
           if (u.usmO_ATIVO) {
+            localStorage.setItem('token', u.usmO_TOKEN_USUARIO);
+            this.subjLoggedIn$.next(true);
+            this.subjUser$.next(u);
             return u;
           } else {
             throw new Error('Usuário inválido');
